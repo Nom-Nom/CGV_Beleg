@@ -153,19 +153,55 @@ public abstract class LineareAlgebra {
 		sin/=(length(a)*length(b));
 		return sin;
 	}
-	//public static Vektor2D angleRad(Vektor2D a){}
-	//public static Vektor3D angleRad(Vektor3D a){}
-	//public static Vektor2D angleDegree(Vektor2D a){}
-	//public static Vektor3D angleDegree(Vektor3D a){}
-	//public static Vektor2D radToDegree(Vektor2D a){}
-	//public static Vektor3D radToDegree(Vektor3D a){}
-	//public static Vektor2D degreeToRad(Vektor2D a){}
-	//public static Vektor3D degreeToRad(Vektor3D a){}
-	//public static Vektor2D determinante(Vektor2D a){}
-	//public static Vektor3D determinante(Vektor3D a){}
-	//public static Vektor2D abs(Vektor2D a){}
-	//public static Vektor3D abs(Vektor3D a){}
-	//public static Vektor2D show(Vektor2D a){}
-	//public static Vektor3D show(Vektor3D a){}
+	
+	public static double angleRad(Vektor2D a, Vektor2D b){
+		return Math.acos(cosEquation(a, b));
+	}
+	
+	public static double angleRad(Vektor3D a, Vektor3D b){
+		return Math.acos(cosEquation(a, b));
+	}
+	
+	public static double angleDegree(Vektor2D a, Vektor2D b){
+		return radToDegree(angleRad(a, b));
+	}
+	
+	public static double angleDegree(Vektor3D a, Vektor3D b){
+		return radToDegree(angleRad(a, b));
+	}
+	
+	public static double radToDegree(double a){
+		return ((360 / (2 * Math.PI)) * a);
+	}
+	
+	public static double degreeToRad(double a){
+		return (((2 * Math.PI) / 360) * a);
+	}
+	
+	public static double determinante(Vektor2D a, Vektor2D b){
+		return (crossProduct(a,b));
+	}
+	
+	public static double determinante(Vektor3D a, Vektor3D b, Vektor3D c){
+		return (a.x*b.y*c.z + b.x*c.y*a.z + c.x*a.y*b.z - c.x*b.y*a.z - a.x*c.y*b.z - b.x*a.y*c.z);
+	}
+	
+	public static Vektor2D abs(Vektor2D a){
+		Vektor2D c= new Vektor2D(Math.abs(a.x),Math.abs(a.y));
+		return c;
+	}
+	
+	public static Vektor3D abs(Vektor3D a){
+		Vektor3D c= new Vektor3D(Math.abs(a.x),Math.abs(a.y), Math.abs(a.z));
+		return c;
+	}
+
+	public static void show(Vektor2D a){
+		System.out.println("Die x-Koordinate: " + a.x + "\n" + "Die y-Koordinate: " + a.y);
+	}
+	
+	public static void show(Vektor3D a){
+		System.out.println("Die x-Koordinate: " + a.x + "\n" + "Die y-Koordinate: " + a.y + "\n" + "Die z-Koordinate: " + a.z);
+	}
 
 }
