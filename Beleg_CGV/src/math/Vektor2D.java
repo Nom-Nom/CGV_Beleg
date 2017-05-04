@@ -64,7 +64,7 @@ public class Vektor2D {
 		if(b==0)
 			throw new Exception("Division durch 0 ist nicht zulässig!");
 		
-		if(b<1 && b > 0)
+		if((b<1 && b > 0) || b==1)
 			if((Math.abs(x)/Math.abs(b) >= Double.MAX_VALUE) || (Math.abs(y)/Math.abs(b) >= Double.MAX_VALUE))
 				throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		
