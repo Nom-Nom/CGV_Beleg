@@ -123,7 +123,7 @@ public class Vektor2DTest {
 		
 		a.div(0.5);
 		assertEquals(a.x, b.x,0);
-		assertEquals(a.x, b.x,0);
+		assertEquals(a.y, b.y,0);
 	}
 	
 	@Test(expected=Exception.class)
@@ -205,7 +205,7 @@ public class Vektor2DTest {
 	@Test
 	public void testNormalize() throws Exception
 	{
-		Vektor2D a = new Vektor2D(55, 5);
+		Vektor2D a = new Vektor2D(12, 55);
 		a.normalize();
 		
 		assertEquals(a.length(),1,0); //die Länge eines Normalisierten Vektors sollte immer 1 ergeben
