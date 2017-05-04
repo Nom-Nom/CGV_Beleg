@@ -16,28 +16,60 @@ public class Vektor2D {
 		this(a.x, a.y);
 	}
 	
-	public void add(Vektor2D b){
+	public void add(Vektor2D b) throws Exception
+	{
+		if((x<0 && b.x<0) || (x>0 && b.x>0) || (y<0 && b.y<0) || (y>0 && b.y>0)) //beide kleiner oder größer als 0
+			if((Math.abs(x)+Math.abs(b.x) >= Double.MAX_VALUE) || (Math.abs(y)+Math.abs(b.y) >= Double.MAX_VALUE))
+				throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
+		if((x>0 && b.x<0) || (x<0 && b.x>0) || (y>0 && b.y<0) || (y>0 && b.y<0)) //beide unterschiedlich
+			if((Math.abs(x)-Math.abs(b.x) >= Double.MAX_VALUE) || (Math.abs(y)-Math.abs(b.y) >= Double.MAX_VALUE))
+				throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		x+=b.x;
 		y+=b.y;
 	}
 	
-	public void setPosition(double x1, double y1){
-		x=x1;
-		y=y1;
-	}
-	
-	public void sub(Vektor2D b){
+	public void sub(Vektor2D b) throws Exception
+	{
+		if((x<0 && b.x<0) || (x>0 && b.x>0) || (y<0 && b.y<0) || (y>0 && b.y>0)) //beide kleiner oder größer als 0
+			if((Math.abs(x)-Math.abs(b.x) >= Double.MAX_VALUE) || (Math.abs(y)-Math.abs(b.y) >= Double.MAX_VALUE))
+				throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
+		if((x>0 && b.x<0) || (x<0 && b.x>0) || (y>0 && b.y<0) || (y>0 && b.y<0)) //beide unterschiedlich
+			if((Math.abs(x)+Math.abs(b.x) >= Double.MAX_VALUE) || (Math.abs(y)+Math.abs(b.y) >= Double.MAX_VALUE))
+				throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		x-=b.x;
 		y-=b.y;
 	}
 	
-	public void mult(double b){
+	public void setPosition(double x1, double y1) throws Exception
+	{
+		if((Math.abs(x1)>=Double.MAX_VALUE) || (Math.abs(y1)>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
+		x=x1;
+		y=y1;
+	}
+	
+	public void mult(double b) throws Exception
+	{
+		if((Math.abs(x)*Math.abs(b) >= Double.MAX_VALUE) || (Math.abs(y)+Math.abs(b) >= Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		x*=b;
 		y*=b;
 	}
 	
-	public void div(double b){
-		mult(1/b);
+	public void div(double b) throws Exception
+	{
+		if(b==0)
+			throw new Exception("Division durch 0 ist nicht zulässig!");
+		
+		if(b<1 && b > 0)
+			if((Math.abs(x)/Math.abs(b) >= Double.MAX_VALUE) || (Math.abs(y)/Math.abs(b) >= Double.MAX_VALUE))
+				throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
+		x/=b;
+		y/=b;
 	}
 	
 	public boolean isEqual(Vektor2D b){
@@ -57,12 +89,14 @@ public class Vektor2D {
 	}
 	
 	public void normalize(){
-		 mult(1/length());
+		 ;
 	}
 	
-	public boolean isNullVector(){
+	public boolean isNullVector()
+	{
 		if ((x==0) && (y==0))
 			return true;
-		else return false;
+		else 
+			return false;
 	}
 }
