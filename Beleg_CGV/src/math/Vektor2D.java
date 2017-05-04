@@ -71,14 +71,14 @@ public class Vektor2D {
 		x/=b;
 		y/=b;
 	}
-	
+	//evtl maxvalue
 	public boolean isEqual(Vektor2D b){
 		if ((x==b.x) && (y==b.y))
 			return true;
 		else 
 			return false;
 	}
-	
+	//evtl maxvalue
 	public boolean isNotEqual(Vektor2D b){
 		if ((x!=b.x) || (y!=b.y))
 			return true;
@@ -106,6 +106,7 @@ public class Vektor2D {
 		// div(tmplaenge);
 	}
 	
+	//evtl maxvalue
 	public boolean isNullVector()
 	{
 		if ((x==0) && (y==0))
