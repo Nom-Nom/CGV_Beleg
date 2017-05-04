@@ -75,21 +75,35 @@ public class Vektor2D {
 	public boolean isEqual(Vektor2D b){
 		if ((x==b.x) && (y==b.y))
 			return true;
-		else return false;
+		else 
+			return false;
 	}
 	
 	public boolean isNotEqual(Vektor2D b){
 		if ((x!=b.x) || (y!=b.y))
 			return true;
-		else return false;
+		else 
+			return false;
 	}
 	
-	public double length(){
+	public double length() throws Exception
+	{
+		if(((x*x) >= Double.MAX_VALUE) || ((y*y) >= Double.MAX_VALUE))
+		{
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		}
 		return (Math.sqrt((x*x)+(y*y)));
 	}
 	
-	public void normalize(){
-		 ;
+	public void normalize() throws Exception
+	{
+		if(((x*x) >= Double.MAX_VALUE) || ((y*y) >= Double.MAX_VALUE))
+		{
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		}
+		double tmplaenge=Math.sqrt((x*x)+(y*y));
+		
+		div(tmplaenge);
 	}
 	
 	public boolean isNullVector()

@@ -21,6 +21,12 @@ public class Vektor2DTest {
 		a.add(b);
 		assertEquals(a.x,c.x,0);
 		assertEquals(a.y,c.y,0);
+		
+		a.x=1.0;    a.y=3.5; //Zurücksetzten von a auf Ausgangswerte
+
+        b.add(a);
+        assertEquals(b.x,c.x,0);
+        assertEquals(b.y,c.y,0);
 	}
 	
 	@Test(expected=Exception.class)
@@ -41,11 +47,18 @@ public class Vektor2DTest {
 		Vektor2D b = new Vektor2D(5.5,2.5);
 
 		Vektor2D c = new Vektor2D(0,0);
+		Vektor2D d = new Vektor2D(-5, -10);
 		c.x=a.x-b.x;
 		c.y=a.y-b.y;
 		a.sub(b);
 		assertEquals(a.x,c.x,0);
 		assertEquals(a.y,c.y,0);
+		
+		a.x=10.5;    a.y=12.5; //Zurücksetzten von a auf Ausgangswerte
+
+        b.sub(a);
+        assertEquals(b.x,d.x,0);
+        assertEquals(b.y,d.y,0);
 	}
 	
 	@Test(expected=Exception.class)
@@ -165,6 +178,45 @@ public class Vektor2DTest {
 		assertFalse(a.isNotEqual(c));
 		assertTrue(a.isNotEqual(b));
 	}
-	
 	//-----------------IS(not)EQUAL Test End-----------------
+	
+	
+	//-----------------LENGTH Test Start-----------------
+	@Test
+	public void testLength() throws Exception
+	{
+		Vektor2D a = new Vektor2D(5.0, 5.0);
+		double laenge = Math.sqrt((5.0*5.0)+(5.0*5.0));
+		
+		assertEquals(a.length(), laenge, 0);
+	}
+	
+	@Test(expected=Exception.class)
+	public void testLengthMitÜberlauf() throws Exception
+	{
+		Vektor2D a = new Vektor2D(Double.MAX_VALUE-20000, 5);
+		
+		a.length();
+	}
+	//-----------------LENGTH Test End-----------------
+	
+	
+	//-----------------NORMALIZE Test Start-----------------
+	@Test
+	public void testNormalize() throws Exception
+	{
+		Vektor2D a = new Vektor2D(55, 5);
+		a.normalize();
+		
+		assertEquals(a.length(),1,0); //die Länge eines Normalisierten Vektors sollte immer 1 ergeben
+		//Achtung Messungenauigkeit durch Wurzel aus zwei (usw)!! 0.999(...) anstatt 1!
+	}
+	
+	@Test(expected=Exception.class)
+	public void testNormalizeMitÜberlauf() throws Exception
+	{
+		Vektor2D a = new Vektor2D(Double.MAX_VALUE-2000, 5);
+		a.normalize();
+	}
+	//-----------------NORMALIZE Test End-----------------
 }
