@@ -323,7 +323,7 @@ Skalarprodukt für 2D-Vektoren:
 Skalarprodukt für 3D-Vektoren:
 \[ \vec u \cdot \vec v = u_1 \cdot v_1 + u_2 \cdot v_2 + u_3 \cdot v_3\]
 
-Kreuzprodukt für 2D-Vektoren:
+Kreuzprodukt/Determinante für 2D-Vektoren:
 \[ \vec u \times \vec v = \begin{pmatrix}
 u_1v_2 - u_2v_1
 \end{pmatrix}\]
@@ -338,6 +338,17 @@ u_1v_2 - u_2v_1
 Kosinusformel für 2D-/3D-Vektoren:
 \[ \cos \alpha = \frac{\vec u \cdot \vec v}{| \vec  u | \cdot | \vec  v | } \]
 
+Sinusformel für 2D-/3D-Vektoren:
+\[ \sin \alpha = \frac{ | \vec u \times \vec v | }{| \vec  u | \cdot | \vec  v | } \]
+
+Regel von Sarrus für Determinante von 3x3-Matrizen:
+\[ det(A) = u_{11}u_{22}u_{33} + u_{12}u_{23}u_{31} + u_{13}u_{21}u_{32} - u_{13}u_{22}u_{31} - u_{11}u_{23}u_{32} - u_{12}u_{21}u_{33} \]
+
+Bogenmaß zu Gradmaß:
+\[ deg = \frac{rad}{\pi} \cdot 180 \]
+
+Gradmaß zu Bogenmaß:
+\[ rad = \frac{deg}{180} \cdot \pi \]
 \section{Testverfahren}
 Für die testgetriebene Entwicklung wurde JUnit verwendet. Bei den Tests haben wir vor allem auf Überlauf getestet, da dies bei den meisten der Methoden eine mögliche Fehlerquelle darstellt. Dazu wurden Rechnungen mit dem maximalen und minimalen Zahlenwerten des Typs Double durchgeführt, um sicher zu stellen, dass die Methoden mit Überlauf korrekt umgeht. 
 \\
