@@ -246,8 +246,65 @@ Hier bietet es sich an die bereits vorhandenen Funktionenen mult() und length() 
 	}
 \end{lstlisting}
 \subsection{LineareAlgebra}
+Die Klasse LineareAlgebra stellt verschiedene Methoden für 2D- und 3D-Vektoren bereit. Da diese Methoden alle statisch sind, wird ein privater Konstruktor benötigt um sicher zu stellen, dass kein Objekt von LineareAlgebra angelegt wird. 
+\begin{lstlisting}
+private LineareAlgebra(){}
+\end{lstlisting}
+Die verschiedenen Funktionen werden im folgenden näher erläutert.
 \subsubsection{Methoden}
-
+\textbf{Addition:}  Bei der Addition bestünde die Möglichkeit, dass es bei zu großen bzw. zu kleinen Zahlen zu einem Überlauf im positiven oder negativen Bereich kommen könnte. Dies lässt sich durch folgende Überlegungen ermitteln:
+\begin{lstlisting}
+	public void add(Vektor3D b) throws Exception
+	{
+		if((x<0 && b.x<0) || (x>0 && b.x>0) || (y<0 && b.y<0) || (y>0 && b.y>0) || (z<0 && b.z<0) || (z>0 && b.z>0))
+			if((Math.abs(x)+Math.abs(b.x) >= Double.MAX_VALUE) || (Math.abs(y)+Math.abs(b.y) >= Double.MAX_VALUE) || (Math.abs(z)+Math.abs(b.z) >= Double.MAX_VALUE))
+				throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+\end{lstlisting}
+Es wird also getestet ob die Koordinaten des aufrufenden und des übergebenen Vektors beide größer oder kleiner Null sind. Wenn das der Fall ist, wird aus diesen der Betrag gebildet und dann geprüft ob deren Addition größer/gleich dem maximalen Wert des darstellbaren Bereichs ist. Ist dies der Fall, wird eine Exception geworfen und der Nutzer über den Fehler informiert.
+(Mit der Bildung des Betrags der Koordinaten genügt der Test auf den Maximalwert von Double.)
+\begin{lstlisting}		
+		if((x>0 && b.x<0) || (x<0 && b.x>0) || (y>0 && b.y<0) || (y<0 && b.y>0) || (z>0 && b.z<0) || (z<0 && b.z>0))
+			if((Math.abs(x)-Math.abs(b.x) >= Double.MAX_VALUE) || (Math.abs(y)-Math.abs(b.y) >= Double.MAX_VALUE) || (Math.abs(z)-Math.abs(b.z) >= Double.MAX_VALUE))
+				throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		x+=b.x;
+		y+=b.y;
+		z+=b.z;
+	}
+\end{lstlisting}
+Des Weiteren bestünde die Möglichkeit einen sehr großen und einen kleinen Wert zu addieren, was ebenfalls zu einem Überlauf führen könnte. Daher wird getestet ob die einzelnen Koordinaten des aufrufenden und des übergebenen größer und/oder kleiner Null sind. Wenn das der Fall ist, wird aus diesen der Betrag gebildet und dann geprüft ob deren Subtraktion größer/gleich dem maximalen Wert des darstellbaren Bereichs ist. Ist dies der Fall, wird eine Exception geworfen und der Nutzer über den Fehler informiert.\\
+\\
+\textbf{Subtraktion:} Prinzipiell können hier die gleichen Fehler auftreten wie bei der Addition. Es muss lediglich bei der Prüfung auf die Vorzeichen geachtet werden. Aufgrund des Bildens der Beträge in der Überprüfung auf Überlauf von der Addition können wir die gleiche Überprüfung auch für die Subtraktion verwenden.\\
+\\
+\textbf{Multiplikation:} Bei der Multiplikation wird ein Vektor mit einer Doublezahl multipliziert. Dabei sollte auch dort darauf geachtet werden, dass kein Überlauf zustande kommt. Das verhindern wir, indem wir auch hier darauf testen ob die Operation einen größeren Wert erzeugen würde, als durch Double darstellbar. Auch hier werfen wir im Fehlerfall eine Exception und geben eine Fehlermeldung zurück.\\
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public void mult(double b) throws Exception
+	{
+		if((Math.abs(x)*Math.abs(b) >= Double.MAX_VALUE) || (Math.abs(y)+Math.abs(b) >= Double.MAX_VALUE) || (Math.abs(z)+Math.abs(b) >= Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		x*=b;
+		y*=b;
+		z*=b;
+	}
+\end{lstlisting} $\;$ \\
+\textbf{Division:} Bei der Division muss abgesehen von dem Test auf positiven und negativen Überlauf auch getestet werden, ob der Divisor Null ist, da Division durch Null nicht zulässig ist. Wurde dies durch den Nutzer nicht beachtet, wird eine Exception geworfen und darauf hingewiesen.
+Für den Test auf Überlauf muss überprüft werden ob der Divisor zwischen Null und Eins liegt, da das Ergebnis in dem Fall dann größer ist als der Dividend bzw. im Falle b==1 gleich groß. Also wird auch hier der Betrag der Koordinaten gebildet und die Division auf Überlauf getestet. Im Fehlerfall erfolgt auch hier eine Exception.
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public void div(double b) throws Exception
+	{
+		if(b==0)
+			throw new Exception("Division durch 0 ist nicht zulässig!");
+		
+		if((b<1 && b > 0) || b==1)
+			if((Math.abs(x)/Math.abs(b) >= Double.MAX_VALUE) || (Math.abs(y)/Math.abs(b) >= Double.MAX_VALUE) || (Math.abs(z)/Math.abs(b) >= Double.MAX_VALUE))
+				throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
+		x/=b;
+		y/=b;
+		z/=b;
+	}
+\end{lstlisting} $\;$ \\
 \section{Testverfahren}
 Für die testgetriebene Entwicklung wurde JUnit verwendet. Bei den Tests haben wir vor allem auf Überlauf getestet, da dies bei den meisten der Methoden eine mögliche Fehlerquelle darstellt. Dazu wurden Rechnungen mit dem maximalen und minimalen Zahlenwerten des Typs Double durchgeführt, um sicher zu stellen, dass die Methoden mit Überlauf korrekt umgeht. 
 \\
