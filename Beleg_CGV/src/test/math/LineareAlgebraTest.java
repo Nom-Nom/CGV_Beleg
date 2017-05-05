@@ -535,7 +535,7 @@ public class LineareAlgebraTest {
 		//-----------------COSEQUATION Test End-----------------
 		
 		
-		//-----------------SINEQUATION Test End-----------------
+		//-----------------SINEQUATION Test Start-----------------
 		@Test
 		public void testSinEquation2D() throws Exception
 		{
@@ -579,5 +579,40 @@ public class LineareAlgebraTest {
 			Vektor3D b = new Vektor3D(10.0, 10.0, 10.0);
 			double c=LineareAlgebra.sinEquation(a, b);
 		}
-		//-----------------COSEQUATION Test End-----------------
+		//-----------------SINEQUATION Test End-----------------
+		
+		
+		//-----------------ANGLERAD Test Start-----------------
+		
+		//-----------------ANGLERAD Test End-----------------
+		
+		
+		//-----------------ANGLEDEGREE Test Start-----------------
+		
+		//-----------------ANGLEDEGREE Test End-----------------
+		
+		
+		//-----------------RADTODEGREE Test Start-----------------
+		
+		//-----------------RADTODEGREE Test End-----------------
+		
+		
+		//-----------------DEGREETORAD Test Start-----------------
+		
+		//-----------------DEGREETORAD Test End-----------------
+		
+		
+		//-----------------DETERMINANTE Test Start-----------------
+		
+		//-----------------DETERMINANTE Test End-----------------
+		
+		
+		//----------------ABS Test Start-----------------
+		
+		//----------------ABS Test End-----------------
+		
+		
+		//----------------SHOW Test Start-----------------
+		
+		//----------------SHOW Test End-----------------
 }
