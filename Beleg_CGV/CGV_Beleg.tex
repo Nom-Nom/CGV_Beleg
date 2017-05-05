@@ -295,7 +295,6 @@ Des Weiteren bestünde die Möglichkeit einen sehr großen und einen kleinen Wer
 		return c;
 	}
 \end{lstlisting} $\;$ \\
-\\
 \textbf{Multiplikation mit Rückgabetyp Vektor3D:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass der Rückgabetyp Vektor3D ist und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
 \\
 \textbf{Division mit Rückgabetyp Vektor2D:} Da die Division nichts anderes ist als die Umkehrfunktion der Multiplikation, können wir diese hier ganz einfach mit dem Reziproke aufrufen. Es muss abgesehen von dem Test auf positiven und negativen Überlauf auch getestet werden, ob der Divisor Null ist, da Division durch Null nicht zulässig ist. Wurde dies durch den Nutzer nicht beachtet, wird eine Exception geworfen und darauf hingewiesen.
@@ -314,7 +313,6 @@ Für den Test auf Überlauf muss überprüft werden ob der Divisor zwischen Null
 		return (mult(a, 1/b));
 	}
 \end{lstlisting} $\;$ \\
-\\
 \textbf{Division mit Rückgabetyp Vektor3D:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass der Rückgabetyp Vektor3D ist und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
 \\
 \textbf{isEqual()mit zwei übergebenen Vektor2D- oder zwei Vektor3D-Objekten: } In den Funktionen isEqual() wird überprüft, ob die übergebenen Vektoren den gleichen Inhalt haben. Dabei war nur die Korrektheit der Funktion zu prüfen. (Vergleich Inhalt und nicht die Objektreferenzen)\\
@@ -338,12 +336,12 @@ Hier bietet es sich an die bereits vorhandenen Funktionenen mult() und length() 
 		 return (mult(a, 1/length(a)));
 	}
 \end{lstlisting} $\;$ \\
-\\
 \textbf{normalize() mit Rückgabetyp Vektor3D:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass der Rückgabetyp Vektor3D ist und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
 \\
 \textbf{euklDistance() mit zwei übergebenen Vektor2D-Objekten:} Die euklidische Distanz für zwei 2D-Vektoren bezeichnet den Abstand dieser in der Ebene. Die Funktion wurde auf Basis von folgender mathematischen Formel programmiert:
 \[ euklDistance(p_1,p_2) = \sqrt{(p_2.x - p_1.x)^2 + (p_2.y - p_1.y)^2} \]
 Dabei war darauf zu achten, dass die Differenz der beiden Vektorkoordinaten im Quadrat auf vermeintlichen Überlauf geprüft wird und dies im Fehlerfall mit einer Exception behandelt wird.
+\textit{Programmcode zur Verdeutlichung:}
 \begin{lstlisting}
 	public static double euklDistance(Vektor2D a, Vektor2D b) throws Exception
 	{
@@ -363,6 +361,7 @@ Der Unterschied zur vorhergehenden Funktion besteht darin, dass zwei Vektor3D-Ob
 \textbf{manhattanDistance() mit zwei übergebenen Vektor2D-Objekten:} Die Manhattan-Distanz für zwei 2D-Vektoren bezeichnet die Distanz zwischen diesen als die Summe der absoluten Differenzen ihrer Einzelkoordinaten. Die Funktion wurde auf Basis von folgender mathematischen Formel programmiert:
 \[ manhattanDistance(p_1,p_2) = | p_2.x - p_1.x | + | p_2.y - p_1.y | \]
 Dabei war darauf zu achten, dass die Differenz der beiden Vektorkoordinaten im Betrag auf vermeintlichen Überlauf geprüft wird und dies im Fehlerfall mit einer Exception behandelt wird.
+\textit{Programmcode zur Verdeutlichung:}
 \begin{lstlisting}
 	public static double manhattanDistance(Vektor2D a, Vektor2D b) throws Exception
 	{
@@ -371,52 +370,192 @@ Dabei war darauf zu achten, dass die Differenz der beiden Vektorkoordinaten im B
 		return (Math.abs(b.x-a.x)+ Math.abs(b.y-a.y));
 	}
 \end{lstlisting} $\;$ \\
-\\
 \textbf{manhattanDistance() mit zwei übergebenen Vektor3D-Objekten:} Die Manhattan-Distanz für zwei 3D-Vektoren bezeichnet die Distanz zwischen diesen als die Summe der absoluten Differenzen ihrer Einzelkoordinaten. Die Funktion wurde auf Basis von folgender mathematischen Formel programmiert:
 \[ manhattanDistance(p_1,p_2) = | p_2.x - p_1.x | + | p_2.y - p_1.y | + | p_2.z - p_1.z |\]
 Der Unterschied zur vorhergehenden Funktion besteht darin, dass zwei Vektor3D-Objekte übergeben werden und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
 \\
-\textbf{crossProduct() mit zwei übergebenen Vektor2D-Objekten:} Das Kreuzprodukt 
-\begin{lstlisting}
-	public static double crossProduct(Vektor2D a, Vektor2D b) throws Exception
-	{
-		if((a.x*b.y)>=Double.MAX_VALUE)
-			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
-		return ((a.x*b.y)-(b.x*a.y));
-	}
-\end{lstlisting} $\;$ \\
-Skalarprodukt für 2D-Vektoren:
-\[ \vec u \cdot \vec v = u_1 \cdot v_1 + u_2 \cdot v_2\]
-
-Skalarprodukt für 3D-Vektoren:
-\[ \vec u \cdot \vec v = u_1 \cdot v_1 + u_2 \cdot v_2 + u_3 \cdot v_3\]
-
-Kreuzprodukt/Determinante für 2D-Vektoren:
-\[ \vec u \times \vec v = \begin{pmatrix}
-u_1v_2 - u_2v_1
-\end{pmatrix}\]
-
-Kreuzprodukt für 3D-Vektoren:
+\textbf{crossProduct() mit zwei übergebenen Vektor2D-Objekten:} Das Kreuzprodukt existiert eigentlich nur für Vektoren mit der Dimension Drei, weshalb es für 2D nicht näher betrachtet wurde. Gemeint ist wahrscheinlich die Determinante $\Rightarrow$ siehe Abschnitt determinante().\\ 
+\\
+\textbf{crossProduct() mit zwei übergebenen Vektor3D-Objekten:} Das Kreuzprodukt definiert einen Vektor, der senkrecht auf der aufgespannten Ebene beiden Ausgangsvektoren (der beiden übergebenen Vektoren) steht. 
+Mathematisch ist es folgendermaßen definiert:
 \[ \vec u \times \vec v = \begin{pmatrix}
 u_2v_3 - u_3v_2\\
 u_3v_3 - u_1v_3\\
 u_1v_2 - u_2v_1
 \end{pmatrix}\]
-
-Kosinusformel für 2D-/3D-Vektoren:
+\\
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public static Vektor3D crossProduct(Vektor3D a, Vektor3D b) throws Exception
+	{
+		if(((a.x*b.y)>=Double.MAX_VALUE) || ((a.x*b.z)>=Double.MAX_VALUE) || ((a.z*b.y)>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
+		Vektor3D c= new Vektor3D();
+		c.x=((a.y*b.z)-(a.z*b.y));
+		c.y=((a.z*b.x)-(a.x*b.z));
+		c.z=((a.x*b.y)-(a.y*b.x));
+		return c;
+	}
+\end{lstlisting}
+Auch bei dieser Funktion war es wichtig auf Überlauf zu testen, welche durch die Multiplikation der Einzelkoordinaten der 3D-Vektoren hervorgerufen werden könnte. Im Fehlerfall wird auch hier eine Exception geworfen und der Nutzer erhält eine Mitteilung. Auf die Überprüfung auf gleiche Dimension der übergebenen Vektoren können wir verzichten, da wir explizit nur Objekte der Klasse Vektor3D als Übergabeparameter zulassen.\\
+\\
+\textbf{dotProduct() mit zwei übergebenen Vektor2D-Objekten:} Diese Funktion bietet die mathematische Verknüpfung zweier Vektoren. Das Ergebnis ist ein Skalar (eine reelle Zahl).
+Mathematisch ist es folgendermaßen definiert:
+\[ \vec u \cdot \vec v = u_1 \cdot v_1 + u_2 \cdot v_2\]
+Durch die testgetriebene Entwicklung reagiert auch diese Funktion auf einen Überlauf durch Multiplikation der Einzelkoordinaten und wirft in einem solchen Falle eine Exception. Auf die Überprüfung auf gleiche Dimension der übergebenen Vektoren können wir verzichten, da wir explizit nur Objekte der Klasse Vektor2D als Übergabeparameter zulassen.\\
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public static double dotProduct(Vektor2D a, Vektor2D b) throws Exception
+	{
+		if(((a.x*b.x)+(a.y*b.y))>=Double.MAX_VALUE)
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		return ((a.x*b.x)+(a.y*b.y));
+	}
+\end{lstlisting} $\;$ \\
+\textbf{dotProduct() mit zwei übergebenen Vektor3D-Objekten:} Diese Funktion bietet die mathematische Verknüpfung zweier Vektoren. Das Ergebnis ist ein Skalar (eine reelle Zahl).
+Mathematisch ist es folgendermaßen definiert:
+\[ \vec u \cdot \vec v = u_1 \cdot v_1 + u_2 \cdot v_2 + u_3 \cdot v_3\]
+Der Unterschied zur vorhergehenden Funktion besteht darin, dass zwei Vektor3D-Objekte übergeben werden und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
+\\
+\textbf{cosEquation() mit zwei übergebenen Vektor2D-Objekten:} cosEquation() beinhaltet die Berechnung des Cosinus des von den beiden Vektoren eingeschlossenen Winkels und ist es folgendermaßen definiert:
 \[ \cos \alpha = \frac{\vec u \cdot \vec v}{| \vec  u | \cdot | \vec  v | } \]
-
-Sinusformel für 2D-/3D-Vektoren:
+Die Berechnung besteht also aus den bereits vorhandenen Funktionen dotProduct() und length(), welche daher von cosEquation() genutzt werden. Ein möglicher Überlauf kann daher nur bei der Multiplikation der jeweiligen Längen der Vektoren auftreten, weshalb dies zuvor abgefragt wird. Im Fehlerfall wird eine entsprechende Exception geworfen.
+Der Winkel $\alpha$ selbst ergibt sich dann wie im Abschnitt angleDegree() besprochen.\\
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public static double cosEquation(Vektor2D a, Vektor2D b) throws Exception
+	{
+		if((dotProduct(a,b)>=Double.MAX_VALUE) || ((length(a)*length(b)>=Double.MAX_VALUE)))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
+		double cos=dotProduct(a,b);
+		cos/=(length(a)*length(b));
+		return cos;
+	}
+\end{lstlisting} $\;$ \\
+\textbf{cosEquation() mit zwei übergebenen Vektor3D-Objekten:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass zwei Vektor3D-Objekte übergeben werden.\\
+\\
+\textbf{sinEquation() mit zwei übergebenen Vektor2D-Objekten:} Diese Methode berechnet den Sinus des, von den beiden Vektoren eingeschlossenen Winkels und ist es folgendermaßen definiert:
 \[ \sin \alpha = \frac{ | \vec u \times \vec v | }{| \vec  u | \cdot | \vec  v | } \]
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public static double sinEquation(Vektor2D a, Vektor2D b) throws Exception
+	{
+		if((crossProduct(a,b)>=Double.MAX_VALUE) || ((length(a)*length(b)>=Double.MAX_VALUE)))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
+		double sin=crossProduct(a,b);
+		sin/=(length(a)*length(b));
+		return sin; 
 
-Regel von Sarrus für Determinante von 3x3-Matrizen:
+	}
+\end{lstlisting}
+Auch in dieser Methode konnten vorhandene Methoden wiederverwendet werden, nämlich crossProduct() und length(). Ein möglicher Überlauf kann daher nur bei der Multiplikation der jeweiligen Längen der Vektoren auftreten, weshalb dies zuvor abgefragt wird. Im Fehlerfall wird eine entsprechende Exception geworfen.\\
+\\
+\textbf{sinEquation() mit zwei übergebenen Vektor3D-Objekten:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass zwei Vektor3D-Objekte übergeben werden.\\
+\\
+\textbf{angleRad() mit zwei übergebenen Vektor2D-Objekten:} Diese Funktion liefert den Winkel zwischen den übergebenen Vektoren im Bogenmaß. Hier haben wir uns einfach unserer Kosinusfunktion bedient, welche durch den Arkuskosinus invertiert wird. Die acos-Funktion liefert in Java immer das Ergebnis in Bogenmaß.
+Wir haben den Fall abgefangen, dass zu große Zahlen übergeben werden könnten.
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public static double angleRad(Vektor2D a, Vektor2D b) throws Exception
+	{
+		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE) || (b.x>=Double.MAX_VALUE) || (b.y>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		return Math.acos(cosEquation(a, b));
+	}
+\end{lstlisting} $\;$ \\
+\textbf{angleRad() mit zwei übergebenen Vektor3D-Objekten:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass zwei Vektor3D-Objekte übergeben werden und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
+\\
+\textbf{radToDegree():} radToDegree() wandelt Bogenmaß in Gradmaß um. Die Voraussetzung dazu ist diese Formel:
+\[ deg = \frac{360 ^\circ }{2\pi} \cdot rad \]
+Der mögliche Überlauf durch die Multiplikation wird dabei von der Methode abgefangen und mit einer entsprechenden Exception behandelt.
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public static double radToDegree(double a) throws Exception
+	{
+		if(((2 * Math.PI) * a)>=Double.MAX_VALUE)
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		return ((360 / (2 * Math.PI)) * a);
+	}
+\end{lstlisting} $\;$ \\
+\textbf{angleDegree() mit zwei übergebenen Vektor2D-Objekten:} Diese Funktion liefert den Winkel zwischen den übergebenen Vektoren im Gradmaß. Hier haben wir uns einfach unserer angleRad-Funktion bedient, welche den Winkel im Bogenmaß liefert und durch die Funktion radToDegree()in Gradmaß umgewandelt wird. Dabei haben wir den Fall abgefangen, dass zu große Zahlen übergeben werden könnten.
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public static double angleDegree(Vektor2D a, Vektor2D b) throws Exception
+	{
+		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE) || (b.x>=Double.MAX_VALUE) || (b.y>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		return radToDegree(angleRad(a, b));
+	}
+\end{lstlisting} $\;$ \\
+\textbf{angleDegree() mit zwei übergebenen Vektor3D-Objekten:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass zwei Vektor3D-Objekte übergeben werden und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
+\\
+\textbf{degreeToRad():} Diese Methode wandelt Gradmaß in Bogenmaß um. Die Voraussetzung dazu ist diese Formel:
+\[ rad = \frac{2\pi}{360 ^\circ} \cdot deg \]
+Sie bildet also die Umkehrfunktion von radToDegree() und wird ebenso auf Überlauf getestet.
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public static double degreeToRad(double a) throws Exception
+	{
+		if((((2 * Math.PI) / 360) * a)>=Double.MAX_VALUE)
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		return (((2 * Math.PI) / 360) * a);
+	}
+\end{lstlisting} $\;$ \\
+\textbf{determinante() mit zwei übergebenen Vektor2D-Objekten:} Die Funktion  berechnet, unter der Voraussetzung das zwei 2D-Vektoren übergeben wurden (welche zusammen eine 2 x 2-Matrix darstellen), die Determinante nach folgendem Schema:
+\[ \vec u \times \vec v = \begin{pmatrix}
+u_1v_2 - u_2v_1
+\end{pmatrix}\]
+Es ist bei 2D-Vektoren auch unter dem Namen Kreuzprodukt verbreitet, da es nichts anderes ist als das Kreuzprodukt der Dimension Drei mit der z-Koordinate auf 0 gesetzt. Daher rufen wir hier einfach die Funktion crossProduct() auf und fangen natürlich vorher wieder alle eventuellen Überlaufmöglichkeiten ab.\\
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public static double determinante(Vektor2D a, Vektor2D b) throws Exception
+	{
+		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE) || (b.x>=Double.MAX_VALUE) || (b.y>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		return (crossProduct(a,b));
+	}
+\end{lstlisting} $\;$ \\
+\textbf{determinante() mit drei übergebenen Vektor3D-Objekten:} Die Funktion  berechnet, unter der Voraussetzung das drei 3D-Vektoren übergeben wurden (welche zusammen eine 3 x 3-Matrix darstellen), die Determinante nach der Regel von Sarrus:
 \[ det(A) = u_{11}u_{22}u_{33} + u_{12}u_{23}u_{31} + u_{13}u_{21}u_{32} - u_{13}u_{22}u_{31} - u_{11}u_{23}u_{32} - u_{12}u_{21}u_{33} \]
-
-Bogenmaß zu Gradmaß:
-\[ deg = \frac{rad}{\pi} \cdot 180 \]
-
-Gradmaß zu Bogenmaß:
-\[ rad = \frac{deg}{180} \cdot \pi \]
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public static double determinante(Vektor3D a, Vektor3D b, Vektor3D c) throws Exception
+	{
+		if((a.x*b.y*c.z + b.x*c.y*a.z + c.x*a.y*b.z - c.x*b.y*a.z - a.x*c.y*b.z - b.x*a.y*c.z)>=Double.MAX_VALUE)
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
+		return (a.x*b.y*c.z + b.x*c.y*a.z + c.x*a.y*b.z - c.x*b.y*a.z - a.x*c.y*b.z - b.x*a.y*c.z);
+	}
+\end{lstlisting}
+Hier wird geprüft ob das Ergebnis der Berechnung einen Überlauf erzeugen würde und dies im Fehlerfall durch eine Exception abgefangen.\\
+\\
+\textbf{abs() mit Rückgabetyp Vektor2D:} Der Funktion wird ein 2D-Vektor übergeben und von diesem jeweils x- und y-Koordinate in den Betrag gesetzt. Die Einzelkoordinaten werden vor der Betragsbildung auf Überlauf getestet.
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public static Vektor2D abs(Vektor2D a) throws Exception
+	{
+		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		Vektor2D c= new Vektor2D(Math.abs(a.x),Math.abs(a.y));
+		return c;
+	}
+\end{lstlisting} $\;$ \\
+\textbf{abs() mit Rückgabetyp Vektor3D:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass ein Vektor3D-Objekt übergeben wird und die Abfrage auf Überlauf um die z-Koordinate erweitert wurde.\\
+\\
+\textbf{show() mit übergebenen Vektor2D-Objekt:} show() ist dafür zuständig die Einzelkoordinaten des übergebenen Vektors auszugeben. Vor der Ausgabe werden diese auf Überlauf getestet.
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public static void show(Vektor2D a) throws Exception
+	{
+		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		System.out.println("Die x-Koordinate: " + a.x + "\n" + "Die y-Koordinate: " + a.y);
+	}
+\end{lstlisting} $\;$ \\
+\textbf{show() mit übergebenen Vektor3D-Objekt:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass ein Vektor3D-Objekt übergeben wird und die Abfrage auf Überlauf um die z-Koordinate erweitert wurde.\\
 \section{Testverfahren}
 Für die testgetriebene Entwicklung wurde JUnit verwendet. Bei den Tests haben wir vor allem auf Überlauf getestet, da dies bei den meisten der Methoden eine mögliche Fehlerquelle darstellt. Dazu wurden Rechnungen mit dem maximalen und minimalen Zahlenwerten des Typs Double durchgeführt, um sicher zu stellen, dass die Methoden mit Überlauf korrekt umgeht. 
 \\
