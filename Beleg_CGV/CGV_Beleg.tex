@@ -305,10 +305,43 @@ Für den Test auf Überlauf muss überprüft werden ob der Divisor zwischen Null
 		z/=b;
 	}
 \end{lstlisting} $\;$ \\
+euklidische Distanz für 2D-Vektoren:
+\[ euklDistance(p_1,p_2) = \sqrt{(p_2.x - p_1.x)^2 + (p_2.y - p_1.y)^2} \]
+
+euklidische Distanz für 3D-Vektoren:
+\[ euklDistance(p_1,p_2) = \sqrt{(p_2.x - p_1.x)^2 + (p_2.y - p_1.y)^2 + (p_2.z - p_1.z)^2} \]
+
+Manhattan-Distanz für 2D-Vektoren:
+\[ manhattanDistance(p_1,p_2) = | p_2.x - p_1.x | + | p_2.y - p_1.y | \]
+
+Manhattan-Distanz für 3D-Vektoren:
+\[ manhattanDistance(p_1,p_2) = | p_2.x - p_1.x | + | p_2.y - p_1.y | + | p_2.z - p_1.z |\]
+
+Skalarprodukt für 2D-Vektoren:
+\[ \vec u \cdot \vec v = u_1 \cdot v_1 + u_2 \cdot v_2\]
+
+Skalarprodukt für 3D-Vektoren:
+\[ \vec u \cdot \vec v = u_1 \cdot v_1 + u_2 \cdot v_2 + u_3 \cdot v_3\]
+
+Kreuzprodukt für 2D-Vektoren:
+\[ \vec u \times \vec v = \begin{pmatrix}
+u_1v_2 - u_2v_1
+\end{pmatrix}\]
+
+Kreuzprodukt für 3D-Vektoren:
+\[ \vec u \times \vec v = \begin{pmatrix}
+u_2v_3 - u_3v_2\\
+u_3v_3 - u_1v_3\\
+u_1v_2 - u_2v_1
+\end{pmatrix}\]
+
+Kosinusformel für 2D-/3D-Vektoren:
+\[ \cos \alpha = \frac{\vec u \cdot \vec v}{| \vec  u | \cdot | \vec  v | } \]
+
 \section{Testverfahren}
 Für die testgetriebene Entwicklung wurde JUnit verwendet. Bei den Tests haben wir vor allem auf Überlauf getestet, da dies bei den meisten der Methoden eine mögliche Fehlerquelle darstellt. Dazu wurden Rechnungen mit dem maximalen und minimalen Zahlenwerten des Typs Double durchgeführt, um sicher zu stellen, dass die Methoden mit Überlauf korrekt umgeht. 
 \\
-Bei der Überprüfung auf Korrektheit der Rechnungen wurde mit verschiedenen Zahlenwerten im Doublebereich gearbeitet um sicher zu stellen, dass die Methoden mit verschiedenen Werten fehlerfrei arbeiten. 
+Bei der Überprüfung auf Korrektheit der Rechnungen wurde mit verschiedenen Zahlenwerten im Doublebereich gearbeitet um zu gewährleisten, dass die Methoden mit verschiedenen Werten fehlerfrei arbeiten. 
 
 
 \end{document}
