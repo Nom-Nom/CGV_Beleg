@@ -200,11 +200,11 @@ public class LineareAlgebra {
 		return (Math.abs(b.x-a.x) + Math.abs(b.y-a.y) + Math.abs(b.z-a.z));
 	}
 
-  //es existiert kein Kreuzprodukt für 2D-Vektoren --> siehe Determinante
 	public static double crossProduct(Vektor2D a, Vektor2D b) throws Exception
 	{
 		if((a.x*b.y)>=Double.MAX_VALUE)
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
 		return ((a.x*b.y)-(b.x*a.y));
 	}
 	public static Vektor3D crossProduct(Vektor3D a, Vektor3D b) throws Exception
@@ -230,35 +230,46 @@ public class LineareAlgebra {
 	{
 		if(((a.x*b.x)+(a.y*b.y)+(a.z*b.z))>=Double.MAX_VALUE)
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
 		return ((a.x*b.x)+(a.y*b.y)+(a.z*b.z));
 	}
-	//Aufruf radtodegree
+
 	public static double cosEquation(Vektor2D a, Vektor2D b) throws Exception
 	{
+		if((dotProduct(a,b)>=Double.MAX_VALUE) || ((length(a)*length(b)>=Double.MAX_VALUE)))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
 		double cos=dotProduct(a,b);
 		cos/=(length(a)*length(b));
 		return cos;
 	}
-	//Aufruf radtodegree
 
 	public static double cosEquation(Vektor3D a, Vektor3D b) throws Exception
 	{
+		if((dotProduct(a,b)>=Double.MAX_VALUE) || ((length(a)*length(b)>=Double.MAX_VALUE)))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
 		double cos=dotProduct(a,b);
 		cos/=(length(a)*length(b));
-		return (Math.toDegrees(cos));
+		return cos;
 	}
-	//Aufruf radtodegree
 
 	public static double sinEquation(Vektor2D a, Vektor2D b) throws Exception
 	{
+		if((crossProduct(a,b)>=Double.MAX_VALUE) || ((length(a)*length(b)>=Double.MAX_VALUE)))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
 		double sin=crossProduct(a,b);
 		sin/=(length(a)*length(b));
 		return sin; 
-		
+
 	}
-	//Aufruf radtodegree
+
 	public static double sinEquation(Vektor3D a, Vektor3D b) throws Exception
 	{
+		if((length(crossProduct(a,b))>=Double.MAX_VALUE) || ((length(a)*length(b)>=Double.MAX_VALUE)))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
 		double sin=length(crossProduct(a,b));
 		sin/=(length(a)*length(b));
 		return sin;
@@ -266,56 +277,88 @@ public class LineareAlgebra {
 	
 	public static double angleRad(Vektor2D a, Vektor2D b) throws Exception
 	{
+		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE) || (b.x>=Double.MAX_VALUE) || (b.y>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return Math.acos(cosEquation(a, b));
 	}
 	
 	public static double angleRad(Vektor3D a, Vektor3D b) throws Exception
 	{
+		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE) || (a.z>=Double.MAX_VALUE) || (b.x>=Double.MAX_VALUE) || (b.y>=Double.MAX_VALUE) || (b.z>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return Math.acos(cosEquation(a, b));
 	}
 	
 	public static double angleDegree(Vektor2D a, Vektor2D b) throws Exception
 	{
+		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE) || (b.x>=Double.MAX_VALUE) || (b.y>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return radToDegree(angleRad(a, b));
 	}
 	
 	public static double angleDegree(Vektor3D a, Vektor3D b) throws Exception
 	{
+		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE) || (a.z>=Double.MAX_VALUE) || (b.x>=Double.MAX_VALUE) || (b.y>=Double.MAX_VALUE) || (b.z>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return radToDegree(angleRad(a, b));
 	}
 	
-	public static double radToDegree(double a){
+	public static double radToDegree(double a) throws Exception
+	{
+		if(((2 * Math.PI) * a)>=Double.MAX_VALUE)
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return ((360 / (2 * Math.PI)) * a);
 	}
 	
-	public static double degreeToRad(double a){
+	public static double degreeToRad(double a) throws Exception
+	{
+		if((((2 * Math.PI) / 360) * a)>=Double.MAX_VALUE)
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return (((2 * Math.PI) / 360) * a);
 	}
 	
 	public static double determinante(Vektor2D a, Vektor2D b) throws Exception
 	{
+		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE) || (b.x>=Double.MAX_VALUE) || (b.y>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return (crossProduct(a,b));
 	}
 	
-	public static double determinante(Vektor3D a, Vektor3D b, Vektor3D c){
+	public static double determinante(Vektor3D a, Vektor3D b, Vektor3D c) throws Exception
+	{
+		if((a.x*b.y*c.z + b.x*c.y*a.z + c.x*a.y*b.z - c.x*b.y*a.z - a.x*c.y*b.z - b.x*a.y*c.z)>=Double.MAX_VALUE)
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
 		return (a.x*b.y*c.z + b.x*c.y*a.z + c.x*a.y*b.z - c.x*b.y*a.z - a.x*c.y*b.z - b.x*a.y*c.z);
 	}
 	
-	public static Vektor2D abs(Vektor2D a){
+	public static Vektor2D abs(Vektor2D a) throws Exception
+	{
+		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		Vektor2D c= new Vektor2D(Math.abs(a.x),Math.abs(a.y));
 		return c;
 	}
 	
-	public static Vektor3D abs(Vektor3D a){
+	public static Vektor3D abs(Vektor3D a) throws Exception
+	{
+		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE) || (a.z>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		Vektor3D c= new Vektor3D(Math.abs(a.x),Math.abs(a.y), Math.abs(a.z));
 		return c;
 	}
 
-	public static void show(Vektor2D a){
+	public static void show(Vektor2D a) throws Exception
+	{
+		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		System.out.println("Die x-Koordinate: " + a.x + "\n" + "Die y-Koordinate: " + a.y);
 	}
 	
-	public static void show(Vektor3D a){
+	public static void show(Vektor3D a) throws Exception
+	{
+		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE) || (a.z>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		System.out.println("Die x-Koordinate: " + a.x + "\n" + "Die y-Koordinate: " + a.y + "\n" + "Die z-Koordinate: " + a.z);
 	}
 

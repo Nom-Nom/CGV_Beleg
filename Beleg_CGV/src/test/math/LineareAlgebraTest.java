@@ -405,13 +405,179 @@ public class LineareAlgebraTest {
 		@Test
 		public void testCrossProduct2D() throws Exception
 		{
+			Vektor2D a = new Vektor2D(5.0, 5.0);
+			Vektor2D b = new Vektor2D(10.0, 10.0);
 			
+			double cross=(5*10)-(10*5);
+			assertEquals(LineareAlgebra.crossProduct(a, b), cross,0);
 		}
 		
 		@Test(expected=Exception.class)
 		public void testCrossProduct2DMit‹berlauf() throws Exception
 		{
+			Vektor2D a = new Vektor2D(Double.MAX_VALUE, 5.0);
+			Vektor2D b = new Vektor2D(10.0, 10.0);
+			double cross = LineareAlgebra.crossProduct(a, b);
+		}
+		
+		@Test
+		public void testCrossProduct3D() throws Exception
+		{
+			Vektor3D a = new Vektor3D(5.0, 5.0, 5.0);
+			Vektor3D b = new Vektor3D(10.0, 10.0, 10.0);
+			Vektor3D c = new Vektor3D(0.0,0.0,0.0);
+			Vektor3D d = new Vektor3D(0.0,0.0,0.0);
 			
+			c.x=((a.y*b.z)-(a.z*b.y));
+			c.y=((a.z*b.x)-(a.x*b.z));
+			c.z=((a.x*b.y)-(a.y*b.x));
+			
+			d=LineareAlgebra.crossProduct(a, b);
+			assertEquals(d.x, c.x, 0);
+			assertEquals(d.y, c.y, 0);
+			assertEquals(d.z, c.z, 0);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testCrossProduct3DMit‹berlauf() throws Exception
+		{
+			Vektor3D a = new Vektor3D(Double.MAX_VALUE, 5.0, 1.0);
+			Vektor3D b = new Vektor3D(10.0, 10.0, 10.0);
+			Vektor3D c = new Vektor3D(0.0,0.0,0.0);
+			c=LineareAlgebra.crossProduct(a, b);
 		}
 		//-----------------CROSSPRODUCT Test End-----------------
+		
+		
+		//-----------------DOTPRODUCT Test Start-----------------
+		@Test
+		public void testDotProduct2D() throws Exception
+		{
+			Vektor2D a = new Vektor2D(5.0, 5.0);
+			Vektor2D b = new Vektor2D(10.0, 10.0);
+			
+			double dot=(a.x*b.x)+(a.y*b.y);
+			assertEquals(LineareAlgebra.dotProduct(a, b), dot,0);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testDotProduct2DMit‹berlauf() throws Exception
+		{
+			Vektor2D a = new Vektor2D(Double.MAX_VALUE, 5.0);
+			Vektor2D b = new Vektor2D(10.0, 10.0);
+			double dot = LineareAlgebra.dotProduct(a, b);
+		}
+		
+		@Test
+		public void testdotProduct3D() throws Exception
+		{
+			Vektor3D a = new Vektor3D(5.0, 5.0, 5.0);
+			Vektor3D b = new Vektor3D(10.0, 10.0, 10.0);
+			
+			double dot = (a.x*b.x)+(a.y*b.y)+(a.z*b.z);
+			assertEquals(LineareAlgebra.dotProduct(a, b), dot,0);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testdotProduct3DMit‹berlauf() throws Exception
+		{
+			Vektor3D a = new Vektor3D(Double.MAX_VALUE, 5.0, 1.0);
+			Vektor3D b = new Vektor3D(10.0, 10.0, 10.0);
+			double c=LineareAlgebra.dotProduct(a, b);
+		}
+		//-----------------DOTPRODUCT Test End-----------------
+		
+		
+		//-----------------COSEQUATION Test End-----------------
+		@Test
+		public void testCosEquation2D() throws Exception
+		{
+			Vektor2D a = new Vektor2D(5.0, 5.0);
+			Vektor2D b = new Vektor2D(10.0, 10.0);
+			
+			double cos = LineareAlgebra.cosEquation(a, b);
+			
+			double coscheck = LineareAlgebra.dotProduct(a,b);
+			coscheck/=(LineareAlgebra.length(a)*LineareAlgebra.length(b));
+			
+			assertEquals(cos,coscheck,0);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testCosEquation2DMit‹berlauf() throws Exception
+		{
+			Vektor2D a = new Vektor2D(Double.MAX_VALUE, 5.0);
+			Vektor2D b = new Vektor2D(10.0, 10.0);
+			double cos = LineareAlgebra.cosEquation(a, b);
+		}
+		
+		@Test
+		public void testCosEquation3D() throws Exception
+		{
+			Vektor3D a = new Vektor3D(5.0, 5.0, 5.0);
+			Vektor3D b = new Vektor3D(10.0, 10.0, 10.0);
+			
+			double cos = LineareAlgebra.cosEquation(a, b);
+			
+			double coscheck = LineareAlgebra.dotProduct(a,b);
+			coscheck/=(LineareAlgebra.length(a)*LineareAlgebra.length(b));
+			
+			assertEquals(cos,coscheck,0);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testCosEquation3DMit‹berlauf() throws Exception
+		{
+			Vektor3D a = new Vektor3D(Double.MAX_VALUE, 5.0, 1.0);
+			Vektor3D b = new Vektor3D(10.0, 10.0, 10.0);
+			double c=LineareAlgebra.cosEquation(a, b);
+		}
+		//-----------------COSEQUATION Test End-----------------
+		
+		
+		//-----------------SINEQUATION Test End-----------------
+		@Test
+		public void testSinEquation2D() throws Exception
+		{
+			Vektor2D a = new Vektor2D(5.0, 5.0);
+			Vektor2D b = new Vektor2D(10.0, 10.0);
+			
+			double cos = LineareAlgebra.sinEquation(a, b);
+			
+			double coscheck = LineareAlgebra.crossProduct(a,b);
+			coscheck/=(LineareAlgebra.length(a)*LineareAlgebra.length(b));
+			
+			assertEquals(cos,coscheck,0);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testSinEquation2DMit‹berlauf() throws Exception
+		{
+			Vektor2D a = new Vektor2D(Double.MAX_VALUE, 5.0);
+			Vektor2D b = new Vektor2D(10.0, 10.0);
+			double cos = LineareAlgebra.sinEquation(a, b);
+		}
+		
+		@Test
+		public void testSinEquation3D() throws Exception
+		{
+			Vektor3D a = new Vektor3D(5.0, 5.0, 5.0);
+			Vektor3D b = new Vektor3D(10.0, 10.0, 10.0);
+			
+			double cos = LineareAlgebra.sinEquation(a, b);
+			
+			double coscheck = LineareAlgebra.length(LineareAlgebra.crossProduct(a,b));
+			coscheck/=(LineareAlgebra.length(a)*LineareAlgebra.length(b));
+			
+			assertEquals(cos,coscheck,0);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testSinEquation3DMit‹berlauf() throws Exception
+		{
+			Vektor3D a = new Vektor3D(Double.MAX_VALUE, 5.0, 1.0);
+			Vektor3D b = new Vektor3D(10.0, 10.0, 10.0);
+			double c=LineareAlgebra.sinEquation(a, b);
+		}
+		//-----------------COSEQUATION Test End-----------------
 }
