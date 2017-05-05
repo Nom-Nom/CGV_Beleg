@@ -186,19 +186,32 @@ public class LineareAlgebra {
 		return dist;
 	}
 	
-	public static double manhattanDistance(Vektor2D a, Vektor2D b){
+	public static double manhattanDistance(Vektor2D a, Vektor2D b) throws Exception
+	{
+		if((Math.abs(b.x-a.x)>=Double.MAX_VALUE) || (Math.abs(b.y-a.y)>=Double.MAX_VALUE) || ((Math.abs(b.x-a.x)+Math.abs(b.y-a.y))>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return (Math.abs(b.x-a.x)+ Math.abs(b.y-a.y));
 	}
 	
-	public static double manhattanDistance(Vektor3D a, Vektor3D b){
+	public static double manhattanDistance(Vektor3D a, Vektor3D b) throws Exception
+	{
+		if((Math.abs(b.x-a.x)>=Double.MAX_VALUE) || (Math.abs(b.y-a.y)>=Double.MAX_VALUE) || (Math.abs(b.z-a.z)>=Double.MAX_VALUE) || ((Math.abs(b.x-a.x)+Math.abs(b.y-a.y)+Math.abs(b.z-a.z))>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return (Math.abs(b.x-a.x) + Math.abs(b.y-a.y) + Math.abs(b.z-a.z));
 	}
 
   //es existiert kein Kreuzprodukt für 2D-Vektoren --> siehe Determinante
-	public static double crossProduct(Vektor2D a, Vektor2D b){
+	public static double crossProduct(Vektor2D a, Vektor2D b) throws Exception
+	{
+		if((a.x*b.y)>=Double.MAX_VALUE)
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return ((a.x*b.y)-(b.x*a.y));
 	}
-	public static Vektor3D crossProduct(Vektor3D a, Vektor3D b){
+	public static Vektor3D crossProduct(Vektor3D a, Vektor3D b) throws Exception
+	{
+		if(((a.x*b.y)>=Double.MAX_VALUE) || ((a.x*b.z)>=Double.MAX_VALUE) || ((a.z*b.y)>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
 		Vektor3D c= new Vektor3D();
 		c.x=((a.y*b.z)-(a.z*b.y));
 		c.y=((a.z*b.x)-(a.x*b.z));
@@ -206,11 +219,17 @@ public class LineareAlgebra {
 		return c;
 	}
 	
-	public static double dotProduct(Vektor2D a, Vektor2D b){
+	public static double dotProduct(Vektor2D a, Vektor2D b) throws Exception
+	{
+		if(((a.x*b.x)+(a.y*b.y))>=Double.MAX_VALUE)
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return ((a.x*b.x)+(a.y*b.y));
 	}
 	
-	public static double dotProduct(Vektor3D a, Vektor3D b){
+	public static double dotProduct(Vektor3D a, Vektor3D b) throws Exception
+	{
+		if(((a.x*b.x)+(a.y*b.y)+(a.z*b.z))>=Double.MAX_VALUE)
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return ((a.x*b.x)+(a.y*b.y)+(a.z*b.z));
 	}
 	//Aufruf radtodegree
@@ -273,7 +292,8 @@ public class LineareAlgebra {
 		return (((2 * Math.PI) / 360) * a);
 	}
 	
-	public static double determinante(Vektor2D a, Vektor2D b){
+	public static double determinante(Vektor2D a, Vektor2D b) throws Exception
+	{
 		return (crossProduct(a,b));
 	}
 	

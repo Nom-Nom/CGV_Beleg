@@ -360,4 +360,58 @@ public class LineareAlgebraTest {
 			double laenge=LineareAlgebra.euklDistance(a, b);
 		}
 		//-----------------EUKLDISTANCE Test End-----------------
+		
+		
+		//-----------------MANHATTANDISTANCE Test Start-----------------
+		@Test
+		public void testmanhattandistance2D() throws Exception
+		{
+			Vektor2D a = new Vektor2D(5.0, 5.0);
+			Vektor2D b = new Vektor2D(10.0, 10.0);
+			double laenge = Math.abs(10-5)+ Math.abs(10-5);
+			
+			assertEquals(LineareAlgebra.manhattanDistance(a, b), laenge,0);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testmanhattandistance2DMit‹berlauf() throws Exception
+		{
+			Vektor2D a = new Vektor2D(Double.MAX_VALUE, 5.0);
+			Vektor2D b = new Vektor2D(10.0, 10.0);
+			double laenge = LineareAlgebra.manhattanDistance(a, b);
+		}
+		
+		@Test
+		public void testmanhattandistance3D() throws Exception
+		{
+			Vektor3D a = new Vektor3D(5.0, 5.0, 5.0);
+			Vektor3D b = new Vektor3D(10.0, 10.0, 10.0);
+			double laenge = Math.abs(10-5) + Math.abs(10-5) + Math.abs(10-5);
+			
+			assertEquals(LineareAlgebra.manhattanDistance(a, b), laenge,0);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testmanhattandistance3DMit‹berlauf() throws Exception
+		{
+			Vektor3D a = new Vektor3D(Double.MAX_VALUE, 5.0, 5.0);
+			Vektor3D b = new Vektor3D(10.0, 10.0, 5.0);
+			double laenge = LineareAlgebra.manhattanDistance(a, b);
+		}
+		//-----------------MANHATTANDISTANCE Test End-----------------
+		
+		
+		//-----------------CROSSPRODUCT Test Start-----------------
+		@Test
+		public void testCrossProduct2D() throws Exception
+		{
+			
+		}
+		
+		@Test(expected=Exception.class)
+		public void testCrossProduct2DMit‹berlauf() throws Exception
+		{
+			
+		}
+		//-----------------CROSSPRODUCT Test End-----------------
 }
