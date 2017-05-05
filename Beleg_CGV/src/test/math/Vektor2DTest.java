@@ -6,9 +6,6 @@ import org.junit.Test;
 import math.Vektor2D;
 
 public class Vektor2DTest {
-
-	public double x, y;
-
 	//-----------------ADD Test Start-----------------
 	@Test
 	public void testAdd() throws Exception
@@ -32,9 +29,9 @@ public class Vektor2DTest {
 	@Test(expected=Exception.class)
 	public void testAddMit‹berlauf() throws Exception
 	{
-		Vektor2D b = new Vektor2D(Double.MAX_VALUE,Double.MAX_VALUE);
 		Vektor2D a = new Vektor2D(-1.0,1.0);
-		
+		Vektor2D b = new Vektor2D(Double.MAX_VALUE,Double.MAX_VALUE);
+
 		a.add(b);
 	}
 	//-----------------ADD Test End-----------------
@@ -119,7 +116,7 @@ public class Vektor2DTest {
 	public void testDiv() throws Exception
 	{
 		Vektor2D a = new Vektor2D(55.0, 9.0);
-		Vektor2D b = new Vektor2D(110, 18);
+		Vektor2D b = new Vektor2D(110.0, 18.0);
 		
 		a.div(0.5);
 		assertEquals(a.x, b.x,0);
@@ -138,7 +135,7 @@ public class Vektor2DTest {
 	{
 		Vektor2D a = new Vektor2D(20.2, 5.3);
 		
-		a.div(0);
+		a.div(0.0);
 	}
 	//-----------------DIV Test End-----------------
 	

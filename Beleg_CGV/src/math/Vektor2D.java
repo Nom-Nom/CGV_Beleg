@@ -89,18 +89,16 @@ public class Vektor2D {
 	public double length() throws Exception
 	{
 		if(((x*x) >= Double.MAX_VALUE) || ((y*y) >= Double.MAX_VALUE))
-		{
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
-		}
+
 		return (Math.sqrt((x*x)+(y*y)));
 	}
 	
 	public void normalize() throws Exception
 	{
 		if(((x*x) >= Double.MAX_VALUE) || ((y*y) >= Double.MAX_VALUE))
-		{
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
-		}
+		
 		mult(1/length());
 		// double tmplaenge=Math.sqrt((x*x)+(y*y)); 		
 		// div(tmplaenge);
