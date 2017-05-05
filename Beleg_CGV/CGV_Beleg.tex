@@ -42,7 +42,7 @@
   {ö}{{\"o}}1
 }
 
-\title{Beleg Computergrafik und Visualisierung II - Teil I}
+\title{Computergrafik und Visualisierung II \\- Beleg Teil I}
 \author{Wiebke Rochler, Christopher Praas, Anna Krauß}
 
 \begin{document}
@@ -51,7 +51,7 @@
 \tableofcontents
 \newpage
 \section{Einleitung}
-Dies ist die Dokumentation zum Quellcode für das den Beleg im Fach Computergrafik und Visualisierung II bei Prof. Dr. Marco Block-Berlitz. Im ersten Teil des Belegs war es Aufgabe drei Klassen in Java zu implementieren. Bei der Umsetzung war darauf zu achten, dass Methoden erstellt werden, die in der Lage sind mögliche Fehler aufspüren und entsprechend zu reagieren.
+Dies ist die Dokumentation zum Quellcode für den Beleg im Fach Computergrafik und Visualisierung II bei Prof. Dr. Marco Block-Berlitz. Im ersten Teil des Belegs war es Aufgabe drei Klassen in Java zu implementieren. Bei der Umsetzung war darauf zu achten, dass Methoden erstellt werden, die in der Lage sind mögliche Fehler aufspüren und entsprechend zu reagieren.
 Die verschiedenen Klassen samt Methoden wurden in einem Package realisiert. In einem zweiten Package sind alle Tests zu den jeweiligen Methoden implementiert.
 \newpage
 \section{Erläuterung der verwendeten Klassen}
@@ -134,7 +134,6 @@ Hier war darauf zu achten, dass das Quadrat der x- und y-Koordinaten keinen Übe
 Die Normierung wird erreicht, indem der Vektor durch seine Länge geteilt wird:
 \[ \frac{1}{||\vec v||} \cdot \vec v \]
 Hier bietet es sich an die bereits vorhandenen Funktionenen mult() und length() aufzurufen.\\
-\\
 \textit{Programmcode zur Verdeutlichung:}
 \begin{lstlisting}
 	public void normalize() throws Exception
@@ -360,7 +359,7 @@ Der Unterschied zur vorhergehenden Funktion besteht darin, dass zwei Vektor3D-Ob
 \\
 \textbf{manhattanDistance() mit zwei übergebenen Vektor2D-Objekten:} Die Manhattan-Distanz für zwei 2D-Vektoren bezeichnet die Distanz zwischen diesen als die Summe der absoluten Differenzen ihrer Einzelkoordinaten. Die Funktion wurde auf Basis von folgender mathematischen Formel programmiert:
 \[ manhattanDistance(p_1,p_2) = | p_2.x - p_1.x | + | p_2.y - p_1.y | \]
-Dabei war darauf zu achten, dass die Differenz der beiden Vektorkoordinaten im Betrag auf vermeintlichen Überlauf geprüft wird und dies im Fehlerfall mit einer Exception behandelt wird.
+Dabei war darauf zu achten, dass die Differenz der beiden Vektorkoordinaten im Betrag auf vermeintlichen Überlauf geprüft wird und dies im Fehlerfall mit einer Exception behandelt wird.\\
 \textit{Programmcode zur Verdeutlichung:}
 \begin{lstlisting}
 	public static double manhattanDistance(Vektor2D a, Vektor2D b) throws Exception
@@ -456,7 +455,7 @@ Auch in dieser Methode konnten vorhandene Methoden wiederverwendet werden, näml
 \textbf{sinEquation() mit zwei übergebenen Vektor3D-Objekten:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass zwei Vektor3D-Objekte übergeben werden.\\
 \\
 \textbf{angleRad() mit zwei übergebenen Vektor2D-Objekten:} Diese Funktion liefert den Winkel zwischen den übergebenen Vektoren im Bogenmaß. Hier haben wir uns einfach unserer Kosinusfunktion bedient, welche durch den Arkuskosinus invertiert wird. Die acos-Funktion liefert in Java immer das Ergebnis in Bogenmaß.
-Wir haben den Fall abgefangen, dass zu große Zahlen übergeben werden könnten.
+Wir haben den Fall abgefangen, dass zu große Zahlen übergeben werden könnten.\\
 \textit{Programmcode zur Verdeutlichung:}
 \begin{lstlisting}
 	public static double angleRad(Vektor2D a, Vektor2D b) throws Exception
@@ -470,7 +469,7 @@ Wir haben den Fall abgefangen, dass zu große Zahlen übergeben werden könnten.
 \\
 \textbf{radToDegree():} radToDegree() wandelt Bogenmaß in Gradmaß um. Die Voraussetzung dazu ist diese Formel:
 \[ deg = \frac{360 ^\circ }{2\pi} \cdot rad \]
-Der mögliche Überlauf durch die Multiplikation wird dabei von der Methode abgefangen und mit einer entsprechenden Exception behandelt.
+Der mögliche Überlauf durch die Multiplikation wird dabei von der Methode abgefangen und mit einer entsprechenden Exception behandelt.\\
 \textit{Programmcode zur Verdeutlichung:}
 \begin{lstlisting}
 	public static double radToDegree(double a) throws Exception
@@ -480,7 +479,7 @@ Der mögliche Überlauf durch die Multiplikation wird dabei von der Methode abge
 		return ((360 / (2 * Math.PI)) * a);
 	}
 \end{lstlisting} $\;$ \\
-\textbf{angleDegree() mit zwei übergebenen Vektor2D-Objekten:} Diese Funktion liefert den Winkel zwischen den übergebenen Vektoren im Gradmaß. Hier haben wir uns einfach unserer angleRad-Funktion bedient, welche den Winkel im Bogenmaß liefert und durch die Funktion radToDegree()in Gradmaß umgewandelt wird. Dabei haben wir den Fall abgefangen, dass zu große Zahlen übergeben werden könnten.
+\textbf{angleDegree() mit zwei übergebenen Vektor2D-Objekten:} Diese Funktion liefert den Winkel zwischen den übergebenen Vektoren im Gradmaß. Hier haben wir uns einfach unserer angleRad-Funktion bedient, welche den Winkel im Bogenmaß liefert und durch die Funktion radToDegree()in Gradmaß umgewandelt wird. Dabei haben wir den Fall abgefangen, dass zu große Zahlen übergeben werden könnten.\\
 \textit{Programmcode zur Verdeutlichung:}
 \begin{lstlisting}
 	public static double angleDegree(Vektor2D a, Vektor2D b) throws Exception
@@ -494,7 +493,7 @@ Der mögliche Überlauf durch die Multiplikation wird dabei von der Methode abge
 \\
 \textbf{degreeToRad():} Diese Methode wandelt Gradmaß in Bogenmaß um. Die Voraussetzung dazu ist diese Formel:
 \[ rad = \frac{2\pi}{360 ^\circ} \cdot deg \]
-Sie bildet also die Umkehrfunktion von radToDegree() und wird ebenso auf Überlauf getestet.
+Sie bildet also die Umkehrfunktion von radToDegree() und wird ebenso auf Überlauf getestet.\\
 \textit{Programmcode zur Verdeutlichung:}
 \begin{lstlisting}
 	public static double degreeToRad(double a) throws Exception
@@ -532,7 +531,7 @@ Es ist bei 2D-Vektoren auch unter dem Namen Kreuzprodukt verbreitet, da es nicht
 \end{lstlisting}
 Hier wird geprüft ob das Ergebnis der Berechnung einen Überlauf erzeugen würde und dies im Fehlerfall durch eine Exception abgefangen.\\
 \\
-\textbf{abs() mit Rückgabetyp Vektor2D:} Der Funktion wird ein 2D-Vektor übergeben und von diesem jeweils x- und y-Koordinate in den Betrag gesetzt. Die Einzelkoordinaten werden vor der Betragsbildung auf Überlauf getestet.
+\textbf{abs() mit Rückgabetyp Vektor2D:} Der Funktion wird ein 2D-Vektor übergeben und von diesem jeweils x- und y-Koordinate in den Betrag gesetzt. Die Einzelkoordinaten werden vor der Betragsbildung auf Überlauf getestet.\\
 \textit{Programmcode zur Verdeutlichung:}
 \begin{lstlisting}
 	public static Vektor2D abs(Vektor2D a) throws Exception
@@ -545,7 +544,7 @@ Hier wird geprüft ob das Ergebnis der Berechnung einen Überlauf erzeugen würd
 \end{lstlisting} $\;$ \\
 \textbf{abs() mit Rückgabetyp Vektor3D:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass ein Vektor3D-Objekt übergeben wird und die Abfrage auf Überlauf um die z-Koordinate erweitert wurde.\\
 \\
-\textbf{show() mit übergebenen Vektor2D-Objekt:} show() ist dafür zuständig die Einzelkoordinaten des übergebenen Vektors auszugeben. Vor der Ausgabe werden diese auf Überlauf getestet.
+\textbf{show() mit übergebenen Vektor2D-Objekt:} show() ist dafür zuständig die Einzelkoordinaten des übergebenen Vektors auszugeben. Vor der Ausgabe werden diese auf Überlauf getestet.\\
 \textit{Programmcode zur Verdeutlichung:}
 \begin{lstlisting}
 	public static void show(Vektor2D a) throws Exception
@@ -560,6 +559,4 @@ Hier wird geprüft ob das Ergebnis der Berechnung einen Überlauf erzeugen würd
 Für die testgetriebene Entwicklung wurde JUnit verwendet. Bei den Tests haben wir vor allem auf Überlauf getestet, da dies bei den meisten der Methoden eine mögliche Fehlerquelle darstellt. Dazu wurden Rechnungen mit dem maximalen und minimalen Zahlenwerten des Typs Double durchgeführt, um sicher zu stellen, dass die Methoden mit Überlauf korrekt umgeht. 
 \\
 Bei der Überprüfung auf Korrektheit der Rechnungen wurde mit verschiedenen Zahlenwerten im Doublebereich gearbeitet um zu gewährleisten, dass die Methoden mit verschiedenen Werten fehlerfrei arbeiten. 
-
-
 \end{document}
