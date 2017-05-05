@@ -94,18 +94,15 @@ public double x=0,y=0,z=0;
 	public double length() throws Exception
 	{
 		if(((x*x) >= Double.MAX_VALUE) || ((y*y) >= Double.MAX_VALUE) || ((z*z) >= Double.MAX_VALUE))
-		{
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
-		}
 		return (Math.sqrt((x*x)+(y*y)+(z*z)));
 	}
 	
 	public void normalize() throws Exception
 	{
 		if(((x*x) >= Double.MAX_VALUE) || ((y*y) >= Double.MAX_VALUE) || ((z*z) >= Double.MAX_VALUE))
-		{
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
-		}
+		
 		mult(1/length());
 		// double tmplaenge=Math.sqrt((x*x)+(y*y)+(z*z));		
 		// div(tmplaenge);

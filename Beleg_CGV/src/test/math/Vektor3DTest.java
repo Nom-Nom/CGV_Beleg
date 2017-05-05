@@ -6,9 +6,6 @@ import org.junit.Test;
 import math.Vektor3D;
 
 public class Vektor3DTest {
-
-	public double x, y, z;
-
 	//-----------------ADD Test Start-----------------
 	@Test
 	public void testAdd() throws Exception
