@@ -1,6 +1,8 @@
 package math;
 
-public abstract class LineareAlgebra {
+public class LineareAlgebra {
+	
+	private LineareAlgebra(){}
 	
 	public static Vektor2D add(Vektor2D a, Vektor2D b){
 		Vektor2D c= new Vektor2D(a.x+b.x,a.y+b.y);

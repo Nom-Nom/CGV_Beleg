@@ -22,7 +22,7 @@ public class Vektor2DTest {
 		assertEquals(a.x,c.x,0);
 		assertEquals(a.y,c.y,0);
 		
-		a.x=1.0;    a.y=3.5; //Zurücksetzten von a auf Ausgangswerte
+		a.x=1.0;    a.y=3.5; //Zurücksetzen von a auf Ausgangswerte
 
         b.add(a);
         assertEquals(b.x,c.x,0);

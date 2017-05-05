@@ -24,7 +24,7 @@ public class Vektor3DTest {
 		assertEquals(a.y,c.y,0);
 		assertEquals(a.z,c.z,0);
 		
-		a.x=1.0;    a.y=3.5; 	a.z=2.0;//Zurücksetzten von a auf Ausgangswerte
+		a.x=1.0;    a.y=3.5; 	a.z=2.0;//Zurücksetzen von a auf Ausgangswerte
 
         b.add(a);
         assertEquals(b.x,c.x,0);
