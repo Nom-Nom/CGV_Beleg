@@ -75,7 +75,7 @@ Es wird also getestet ob die Koordinaten des aufrufenden und des übergebenen Ve
 				throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 	}
 \end{lstlisting}
-Des Weiteren bestünde die Möglichkeit einen sehr großen und einen kleinen Wert zu addieren, was ebenfalls zu einem Überlauf führen könnte. Daher wird getestet ob die einzelnen Koordinaten des aufrufenden und des übergebenen größer und/oder kleiner Null sind. Wenn das der Fall ist, wird aus diesen der Betrag gebildet und dann geprüft ob deren Subtraktion größer/gleich dem maximalen Wert des darstellbaren Bereichs ist. Ist dies der Fall, wird eine Exception geworfen und der Nutzer über den Fehler informiert.\\
+Des Weiteren bestünde die Möglichkeit einen sehr großen und einen kleinen Wert zu addieren, was ebenfalls zu einem Überlauf führen könnte. Daher wird getestet ob die einzelnen Koordinaten des aufrufenden und des übergebenen Vektoren größer und/oder kleiner Null sind. Wenn das der Fall ist, wird aus diesen der Betrag gebildet und dann geprüft ob deren Subtraktion größer/gleich dem maximalen Wert des darstellbaren Bereichs ist. Ist dies der Fall, wird eine Exception geworfen und der Nutzer über den Fehler informiert.\\
 \\
 \textbf{Subtraktion:} Prinzipiell können hier die gleichen Fehler auftreten wie bei der Addition. Es muss lediglich bei der Prüfung auf die Vorzeichen geachtet werden. Aufgrund des Bildens der Beträge in der Überprüfung auf Überlauf von der Addition können wir die gleiche Überprüfung auch für die Subtraktion verwenden.\\
 \\
@@ -171,7 +171,7 @@ Es wird also getestet ob die Koordinaten des aufrufenden und des übergebenen Ve
 		z+=b.z;
 	}
 \end{lstlisting}
-Des Weiteren bestünde die Möglichkeit einen sehr großen und einen kleinen Wert zu addieren, was ebenfalls zu einem Überlauf führen könnte. Daher wird getestet ob die einzelnen Koordinaten des aufrufenden und des übergebenen größer und/oder kleiner Null sind. Wenn das der Fall ist, wird aus diesen der Betrag gebildet und dann geprüft ob deren Subtraktion größer/gleich dem maximalen Wert des darstellbaren Bereichs ist. Ist dies der Fall, wird eine Exception geworfen und der Nutzer über den Fehler informiert.\\
+Des Weiteren bestünde die Möglichkeit einen sehr großen und einen kleinen Wert zu addieren, was ebenfalls zu einem Überlauf führen könnte. Daher wird getestet ob die einzelnen Koordinaten des aufrufenden und des übergebenen Vektoren größer und/oder kleiner Null sind. Wenn das der Fall ist, wird aus diesen der Betrag gebildet und dann geprüft ob deren Subtraktion größer/gleich dem maximalen Wert des darstellbaren Bereichs ist. Ist dies der Fall, wird eine Exception geworfen und der Nutzer über den Fehler informiert.\\
 \\
 \textbf{Subtraktion:} Prinzipiell können hier die gleichen Fehler auftreten wie bei der Addition. Es muss lediglich bei der Prüfung auf die Vorzeichen geachtet werden. Aufgrund des Bildens der Beträge in der Überprüfung auf Überlauf von der Addition können wir die gleiche Überprüfung auch für die Subtraktion verwenden.\\
 \\
@@ -224,7 +224,7 @@ Für den Test auf Überlauf muss überprüft werden ob der Divisor zwischen Null
 \textbf{isNotEqual(): } Hierbei handelt es sich um die Umkehrfunktion von isEqual(), bei welcher wir gleichermaßen vorgegangen sind.\\
 \\
 \textbf{length(): } Die Methode length() berechnet die Länge des aufrufenden Vektors.\\
-Mathematische Bildungsvorschrift für die Länge eines Vektors der Dimension Zwei:
+Mathematische Bildungsvorschrift für die Länge eines Vektors der Dimension Drei:
 \[ ||\vec v|| = \sqrt{x^2 + y^2 + z^2} \]
 Hier war darauf zu achten, dass das Quadrat der x-, y- und z-Koordinaten keinen Überlauf verursacht, was durch eine Abfrage und im Fehlerfall geworfene Exception vermieden wird.\\
 \\
@@ -251,72 +251,140 @@ Die Klasse LineareAlgebra stellt verschiedene Methoden für 2D- und 3D-Vektoren 
 private LineareAlgebra(){}
 \end{lstlisting}
 Die verschiedenen Funktionen werden im folgenden näher erläutert.
+Bei den Grundrechenarten Addition, Subtraktion, Multiplikation und Division wurde zur Berechnung des Ergebnisses ein temporärer Vektor erstellt.
 \subsubsection{Methoden}
-\textbf{Addition:}  Bei der Addition bestünde die Möglichkeit, dass es bei zu großen bzw. zu kleinen Zahlen zu einem Überlauf im positiven oder negativen Bereich kommen könnte. Dies lässt sich durch folgende Überlegungen ermitteln:
+\textbf{Addition mit Rückgabetyp Vektor2D:}  Bei der Addition bestünde die Möglichkeit, dass es bei zu großen bzw. zu kleinen Zahlen zu einem Überlauf im positiven oder negativen Bereich kommen könnte. Dies lässt sich durch folgende Überlegungen ermitteln:
 \begin{lstlisting}
-	public void add(Vektor3D b) throws Exception
+		public static Vektor2D add(Vektor2D a, Vektor2D b) throws Exception
 	{
-		if((x<0 && b.x<0) || (x>0 && b.x>0) || (y<0 && b.y<0) || (y>0 && b.y>0) || (z<0 && b.z<0) || (z>0 && b.z>0))
-			if((Math.abs(x)+Math.abs(b.x) >= Double.MAX_VALUE) || (Math.abs(y)+Math.abs(b.y) >= Double.MAX_VALUE) || (Math.abs(z)+Math.abs(b.z) >= Double.MAX_VALUE))
+		if((a.x<0 && b.x<0) || (a.x>0 && b.x>0) || (a.y<0 && b.y<0) || (a.y>0 && b.y>0))
+			if((Math.abs(a.x)+Math.abs(b.x) >= Double.MAX_VALUE) || (Math.abs(a.y)+Math.abs(b.y) >= Double.MAX_VALUE))
 				throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+
 \end{lstlisting}
-Es wird also getestet ob die Koordinaten des aufrufenden und des übergebenen Vektors beide größer oder kleiner Null sind. Wenn das der Fall ist, wird aus diesen der Betrag gebildet und dann geprüft ob deren Addition größer/gleich dem maximalen Wert des darstellbaren Bereichs ist. Ist dies der Fall, wird eine Exception geworfen und der Nutzer über den Fehler informiert.
+Es wird also getestet ob die Koordinaten der übergebenen Vektoren beide größer oder kleiner Null sind. Wenn das der Fall ist, wird aus diesen der Betrag gebildet und dann geprüft ob deren Addition größer/gleich dem maximalen Wert des darstellbaren Bereichs ist. Ist dies der Fall, wird eine Exception geworfen und der Nutzer über den Fehler informiert.
 (Mit der Bildung des Betrags der Koordinaten genügt der Test auf den Maximalwert von Double.)
 \begin{lstlisting}		
-		if((x>0 && b.x<0) || (x<0 && b.x>0) || (y>0 && b.y<0) || (y<0 && b.y>0) || (z>0 && b.z<0) || (z<0 && b.z>0))
-			if((Math.abs(x)-Math.abs(b.x) >= Double.MAX_VALUE) || (Math.abs(y)-Math.abs(b.y) >= Double.MAX_VALUE) || (Math.abs(z)-Math.abs(b.z) >= Double.MAX_VALUE))
+		if((a.x>0 && b.x<0) || (a.x<0 && b.x>0) || (a.y>0 && b.y<0) || (a.y<0 && b.y>0)) //beide unterschiedlich
+			if((Math.abs(a.x)-Math.abs(b.x) >= Double.MAX_VALUE) || (Math.abs(a.y)-Math.abs(b.y) >= Double.MAX_VALUE))
 				throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
-		x+=b.x;
-		y+=b.y;
-		z+=b.z;
+		
+		Vektor2D c = new Vektor2D(a.x+b.x,a.y+b.y);
+		return c;
 	}
 \end{lstlisting}
-Des Weiteren bestünde die Möglichkeit einen sehr großen und einen kleinen Wert zu addieren, was ebenfalls zu einem Überlauf führen könnte. Daher wird getestet ob die einzelnen Koordinaten des aufrufenden und des übergebenen größer und/oder kleiner Null sind. Wenn das der Fall ist, wird aus diesen der Betrag gebildet und dann geprüft ob deren Subtraktion größer/gleich dem maximalen Wert des darstellbaren Bereichs ist. Ist dies der Fall, wird eine Exception geworfen und der Nutzer über den Fehler informiert.\\
+Des Weiteren bestünde die Möglichkeit einen sehr großen und einen kleinen Wert zu addieren, was ebenfalls zu einem Überlauf führen könnte. Daher wird getestet ob die einzelnen Koordinaten der übergebenen Vektoren größer und/oder kleiner Null sind. Wenn das der Fall ist, wird aus diesen der Betrag gebildet und dann geprüft ob deren Subtraktion größer/gleich dem maximalen Wert des darstellbaren Bereichs ist. Ist dies der Fall, wird eine Exception geworfen und der Nutzer über den Fehler informiert.\\
 \\
-\textbf{Subtraktion:} Prinzipiell können hier die gleichen Fehler auftreten wie bei der Addition. Es muss lediglich bei der Prüfung auf die Vorzeichen geachtet werden. Aufgrund des Bildens der Beträge in der Überprüfung auf Überlauf von der Addition können wir die gleiche Überprüfung auch für die Subtraktion verwenden.\\
+\textbf{Addition mit Rückgabewert Vektor3D:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass der Rückgabetyp Vektor3D ist und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
 \\
-\textbf{Multiplikation:} Bei der Multiplikation wird ein Vektor mit einer Doublezahl multipliziert. Dabei sollte auch dort darauf geachtet werden, dass kein Überlauf zustande kommt. Das verhindern wir, indem wir auch hier darauf testen ob die Operation einen größeren Wert erzeugen würde, als durch Double darstellbar. Auch hier werfen wir im Fehlerfall eine Exception und geben eine Fehlermeldung zurück.\\
+\textbf{Subtraktion mit Rückgabetyp Vektor2D:} Prinzipiell können hier die gleichen Fehler auftreten wie bei der Addition. Es muss lediglich bei der Prüfung auf die Vorzeichen geachtet werden. Aufgrund des Bildens der Beträge in der Überprüfung auf Überlauf von der Addition können wir die gleiche Überprüfung auch für die Subtraktion verwenden.\\
+\\
+\textbf{Subtraktion mit Rückgabetyp Vektor3D:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass der Rückgabetyp Vektor3D ist und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
+\\
+\textbf{Multiplikation mit Rückgabteyp Vektor2D:} Bei der Multiplikation wird ein Vektor mit einer Doublezahl multipliziert. Dabei sollte auch dort darauf geachtet werden, dass kein Überlauf zustande kommt. Das verhindern wir, indem wir auch hier darauf testen ob die Operation einen größeren Wert erzeugen würde, als durch Double darstellbar. Auch hier werfen wir im Fehlerfall eine Exception und geben eine Fehlermeldung zurück.\\
 \textit{Programmcode zur Verdeutlichung:}
 \begin{lstlisting}
-	public void mult(double b) throws Exception
+	public static Vektor2D mult(Vektor2D a, double b) throws Exception
 	{
-		if((Math.abs(x)*Math.abs(b) >= Double.MAX_VALUE) || (Math.abs(y)+Math.abs(b) >= Double.MAX_VALUE) || (Math.abs(z)+Math.abs(b) >= Double.MAX_VALUE))
+		if((Math.abs(a.x)*Math.abs(b) >= Double.MAX_VALUE) || (Math.abs(a.y)+Math.abs(b) >= Double.MAX_VALUE))
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
-		x*=b;
-		y*=b;
-		z*=b;
+		
+		Vektor2D c= new Vektor2D();
+		c.x=a.x*b;
+		c.y=a.y*b;
+		return c;
 	}
 \end{lstlisting} $\;$ \\
-\textbf{Division:} Bei der Division muss abgesehen von dem Test auf positiven und negativen Überlauf auch getestet werden, ob der Divisor Null ist, da Division durch Null nicht zulässig ist. Wurde dies durch den Nutzer nicht beachtet, wird eine Exception geworfen und darauf hingewiesen.
+\\
+\textbf{Multiplikation mit Rückgabetyp Vektor3D:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass der Rückgabetyp Vektor3D ist und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
+\\
+\textbf{Division mit Rückgabetyp Vektor2D:} Da die Division nichts anderes ist als die Umkehrfunktion der Multiplikation, können wir diese hier ganz einfach mit dem Reziproke aufrufen. Es muss abgesehen von dem Test auf positiven und negativen Überlauf auch getestet werden, ob der Divisor Null ist, da Division durch Null nicht zulässig ist. Wurde dies durch den Nutzer nicht beachtet, wird eine Exception geworfen und darauf hingewiesen.
 Für den Test auf Überlauf muss überprüft werden ob der Divisor zwischen Null und Eins liegt, da das Ergebnis in dem Fall dann größer ist als der Dividend bzw. im Falle b==1 gleich groß. Also wird auch hier der Betrag der Koordinaten gebildet und die Division auf Überlauf getestet. Im Fehlerfall erfolgt auch hier eine Exception.
 \textit{Programmcode zur Verdeutlichung:}
 \begin{lstlisting}
-	public void div(double b) throws Exception
+	public static Vektor2D div(Vektor2D a, double b) throws Exception
 	{
 		if(b==0)
 			throw new Exception("Division durch 0 ist nicht zulässig!");
 		
 		if((b<1 && b > 0) || b==1)
-			if((Math.abs(x)/Math.abs(b) >= Double.MAX_VALUE) || (Math.abs(y)/Math.abs(b) >= Double.MAX_VALUE) || (Math.abs(z)/Math.abs(b) >= Double.MAX_VALUE))
+			if((Math.abs(a.x)/Math.abs(b) >= Double.MAX_VALUE) || (Math.abs(a.y)/Math.abs(b) >= Double.MAX_VALUE))
 				throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		
-		x/=b;
-		y/=b;
-		z/=b;
+		return (mult(a, 1/b));
 	}
 \end{lstlisting} $\;$ \\
-euklidische Distanz für 2D-Vektoren:
+\\
+\textbf{Division mit Rückgabetyp Vektor3D:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass der Rückgabetyp Vektor3D ist und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
+\\
+\textbf{isEqual()mit zwei übergebenen Vektor2D- oder zwei Vektor3D-Objekten: } In den Funktionen isEqual() wird überprüft, ob die übergebenen Vektoren den gleichen Inhalt haben. Dabei war nur die Korrektheit der Funktion zu prüfen. (Vergleich Inhalt und nicht die Objektreferenzen)\\
+\\
+\textbf{isNotEqual()mit zwei übergebenen Vektor2D- oder zwei Vektor3D-Objekten: } Hierbei handelt es sich um die Umkehrfunktionen von isEqual(), bei welcher wir gleichermaßen vorgegangen sind.\\
+\\
+\textbf{length() von Vektor2D oder Vektor3D: } Die Methoden length() berechnen die Länge des jeweils übergebenen Vektors.\\
+Hier war darauf zu achten, dass das Quadrat der x-, y- und (im Falle von length() für Vektor3D) z-Koordinaten keinen Überlauf verursacht, was durch eine Abfrage und im Fehlerfall geworfene Exception vermieden wird.\\
+\\
+\textbf{normalize() mit Rückgabetyp Vektor2D: } Auch bei der Normierung des übergebenen Vektors wird das Quadrat der x-, y- Koordinate auf vermeintlichen Überlauf geprüft, was durch eine Abfrage und im Fehlerfall geworfene Exception vermieden wird.\\
+Die Normierung wird erreicht, indem der Vektor durch seine Länge geteilt wird:
+\[ \frac{1}{||\vec v||} \cdot \vec v \]
+Hier bietet es sich an die bereits vorhandenen Funktionenen mult() und length() aufzurufen.\\
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+	public static Vektor2D normalize(Vektor2D a) throws Exception
+	{
+		if(((a.x*a.x) >= Double.MAX_VALUE) || ((a.y*a.y) >= Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
+		 return (mult(a, 1/length(a)));
+	}
+\end{lstlisting} $\;$ \\
+\\
+\textbf{normalize() mit Rückgabetyp Vektor3D:} Der Unterschied zur vorhergehenden Funktion besteht darin, dass der Rückgabetyp Vektor3D ist und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
+\\
+\textbf{euklDistance() mit zwei übergebenen Vektor2D-Objekten:} Die euklidische Distanz für zwei 2D-Vektoren bezeichnet den Abstand dieser in der Ebene. Die Funktion wurde auf Basis von folgender mathematischen Formel programmiert:
 \[ euklDistance(p_1,p_2) = \sqrt{(p_2.x - p_1.x)^2 + (p_2.y - p_1.y)^2} \]
-
-euklidische Distanz für 3D-Vektoren:
+Dabei war darauf zu achten, dass die Differenz der beiden Vektorkoordinaten im Quadrat auf vermeintlichen Überlauf geprüft wird und dies im Fehlerfall mit einer Exception behandelt wird.
+\begin{lstlisting}
+	public static double euklDistance(Vektor2D a, Vektor2D b) throws Exception
+	{
+		if((Math.pow(a.x-b.x,2)>=Double.MAX_VALUE) || (Math.pow(a.y-b.y,2)>=Double.MAX_VALUE) || (Math.sqrt(Math.pow(a.x-b.x,2)+Math.pow(a.y-b.y,2))>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
+		double diffX=Math.pow(a.x-b.x,2);
+		double diffY=Math.pow(a.y-b.y,2);
+		double dist=Math.sqrt(diffX+diffY);
+		return dist;
+	}
+\end{lstlisting} $\;$ \\
+\textbf{euklDistance() mit zwei übergebenen Vektor3D-Objekten:} Die euklidische Distanz für zwei 3D-Vektoren bezeichnet den Abstand dieser im Raum. Die Funktion wurde auf Basis von folgender mathematischen Formel programmiert:
 \[ euklDistance(p_1,p_2) = \sqrt{(p_2.x - p_1.x)^2 + (p_2.y - p_1.y)^2 + (p_2.z - p_1.z)^2} \]
-
-Manhattan-Distanz für 2D-Vektoren:
+Der Unterschied zur vorhergehenden Funktion besteht darin, dass zwei Vektor3D-Objekte übergeben werden und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
+\\
+\textbf{manhattanDistance() mit zwei übergebenen Vektor2D-Objekten:} Die Manhattan-Distanz für zwei 2D-Vektoren bezeichnet die Distanz zwischen diesen als die Summe der absoluten Differenzen ihrer Einzelkoordinaten. Die Funktion wurde auf Basis von folgender mathematischen Formel programmiert:
 \[ manhattanDistance(p_1,p_2) = | p_2.x - p_1.x | + | p_2.y - p_1.y | \]
-
-Manhattan-Distanz für 3D-Vektoren:
+Dabei war darauf zu achten, dass die Differenz der beiden Vektorkoordinaten im Betrag auf vermeintlichen Überlauf geprüft wird und dies im Fehlerfall mit einer Exception behandelt wird.
+\begin{lstlisting}
+	public static double manhattanDistance(Vektor2D a, Vektor2D b) throws Exception
+	{
+		if((Math.abs(b.x-a.x)>=Double.MAX_VALUE) || (Math.abs(b.y-a.y)>=Double.MAX_VALUE) || ((Math.abs(b.x-a.x)+Math.abs(b.y-a.y))>=Double.MAX_VALUE))
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		return (Math.abs(b.x-a.x)+ Math.abs(b.y-a.y));
+	}
+\end{lstlisting} $\;$ \\
+\\
+\textbf{manhattanDistance() mit zwei übergebenen Vektor3D-Objekten:} Die Manhattan-Distanz für zwei 3D-Vektoren bezeichnet die Distanz zwischen diesen als die Summe der absoluten Differenzen ihrer Einzelkoordinaten. Die Funktion wurde auf Basis von folgender mathematischen Formel programmiert:
 \[ manhattanDistance(p_1,p_2) = | p_2.x - p_1.x | + | p_2.y - p_1.y | + | p_2.z - p_1.z |\]
-
+Der Unterschied zur vorhergehenden Funktion besteht darin, dass zwei Vektor3D-Objekte übergeben werden und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
+\\
+\textbf{crossProduct() mit zwei übergebenen Vektor2D-Objekten:} Das Kreuzprodukt 
+\begin{lstlisting}
+	public static double crossProduct(Vektor2D a, Vektor2D b) throws Exception
+	{
+		if((a.x*b.y)>=Double.MAX_VALUE)
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		return ((a.x*b.y)-(b.x*a.y));
+	}
+\end{lstlisting} $\;$ \\
 Skalarprodukt für 2D-Vektoren:
 \[ \vec u \cdot \vec v = u_1 \cdot v_1 + u_2 \cdot v_2\]
 

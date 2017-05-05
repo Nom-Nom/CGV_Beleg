@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.4)  5 MAY 2017 13:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.4)  5 MAY 2017 14:49
 entering extended mode
 **./CGV_Beleg.tex
 (CGV_Beleg.tex
@@ -701,12 +701,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 130--135
 
  []
 
-
+[5]
 Underfull \hbox (badness 10000) in paragraph at lines 135--139
 
  []
 
-[5] [6]
+[6]
 Underfull \hbox (badness 10000) in paragraph at lines 174--180
 
  []
@@ -736,43 +736,141 @@ Underfull \hbox (badness 10000) in paragraph at lines 228--233
 
  []
 
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 274--280
+[9] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 276--286
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 274--280
+Underfull \hbox (badness 10000) in paragraph at lines 276--286
 
  []
 
-[10] [11] [12] [13] (CGV_Beleg.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 276--286
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 276--286
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 297--304
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 297--304
+
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 316--329
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--329
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--329
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--329
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--329
+
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 340--345
+
+ []
+
+
+Overfull \hbox (2.1594pt too wide) in paragraph at lines 340--345
+\T1/cmr/bx/n/10.95 normalize() mit Rück-ga-be-typ Vek-tor3D: \T1/cmr/m/n/10.95 
+Der Un-ter-schied zur vor-her-ge-hen-den Funk-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 340--345
+
+ []
+
+
+Overfull \hbox (2.74625pt too wide) in paragraph at lines 350--351
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]  
+ []
+
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 360--364
+
+ []
+
+
+Overfull \hbox (9.66481pt too wide) in paragraph at lines 360--364
+\T1/cmr/bx/n/10.95 manhattanDistance() mit zwei über-ge-be-nen Vektor2D-Objekte
+n: \T1/cmr/m/n/10.95 Die Manhattan-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 373--376
+
+ []
+
+
+Overfull \hbox (9.66481pt too wide) in paragraph at lines 373--376
+\T1/cmr/bx/n/10.95 manhattanDistance() mit zwei über-ge-be-nen Vektor3D-Objekte
+n: \T1/cmr/m/n/10.95 Die Manhattan-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--379
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--379
+
+ []
+
+[14] [15] (CGV_Beleg.aux) ) 
 Here is how much of TeX's memory you used:
- 6886 strings out of 493328
- 102464 string characters out of 3139128
- 303472 words of memory out of 3000000
- 10318 multiletter control sequences out of 15000+200000
+ 6895 strings out of 493328
+ 102561 string characters out of 3139128
+ 299472 words of memory out of 3000000
+ 10327 multiletter control sequences out of 15000+200000
  16367 words of font info for 42 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  48i,8n,51p,8822b,1676s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Anna\AppData\Local\MiKTeX\2.9\f
-onts\pk\ljfour\jknappen\ec\dpi600\ecti1095.pk> <C:\Users\Anna\AppData\Local\MiK
-TeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk> <C:\Users\Anna\AppData\
-Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\Anna
-\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsx1200.pk> <C:\U
-sers\Anna\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.
-pk> <C:\Users\Anna\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
-ecsx1095.pk> <C:\Users\Anna\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\e
-c\dpi600\ecsx1440.pk> <C:\Users\Anna\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\j
-knappen\ec\dpi600\ecrm1440.pk> <C:\Users\Anna\AppData\Local\MiKTeX\2.9\fonts\pk
-\ljfour\jknappen\ec\dpi600\ecsx2074.pk><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.
-pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on CGV_Beleg.pdf (13 pages, 186230 bytes).
+ <C:\Users\Anna\AppData\Local\MiKTeX\2.9\fonts\pk\lj
+four\jknappen\ec\dpi600\ecti1095.pk> <C:\Users\Anna\AppData\Local\MiKTeX\2.9\fo
+nts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk> <C:\Users\Anna\AppData\Local\MiKT
+eX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\Anna\AppData\L
+ocal\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsx1200.pk> <C:\Users\Anna\
+AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Us
+ers\Anna\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsx1095.p
+k> <C:\Users\Anna\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\e
+csx1440.pk> <C:\Users\Anna\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec
+\dpi600\ecrm1440.pk> <C:\Users\Anna\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jk
+nappen\ec\dpi600\ecsx2074.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on CGV_Beleg.pdf (15 pages, 196998 bytes).
 PDF statistics:
- 406 PDF objects out of 1000 (max. 8388607)
+ 424 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
