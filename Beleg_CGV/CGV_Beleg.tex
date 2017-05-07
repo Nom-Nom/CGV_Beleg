@@ -373,8 +373,18 @@ Dabei war darauf zu achten, dass die Differenz der beiden Vektorkoordinaten im B
 \[ manhattanDistance(p_1,p_2) = | p_2.x - p_1.x | + | p_2.y - p_1.y | + | p_2.z - p_1.z |\]
 Der Unterschied zur vorhergehenden Funktion besteht darin, dass zwei Vektor3D-Objekte übergeben werden und die Abfrage auf Überlauf um die z-Koordinaten erweitert wurde.\\
 \\
-\textbf{crossProduct() mit zwei übergebenen Vektor2D-Objekten:} Das Kreuzprodukt existiert eigentlich nur für Vektoren mit der Dimension Drei, weshalb es für 2D nicht näher betrachtet wurde. Gemeint ist wahrscheinlich die Determinante $\Rightarrow$ siehe Abschnitt determinante().\\ 
-\\
+\textbf{crossProduct() mit zwei übergebenen Vektor2D-Objekten:} Das Kreuzprodukt existiert eigentlich nur für Vektoren mit der Dimension Drei, weshalb es für 2D nicht näher betrachtet wurde. Gemeint ist wahrscheinlich die Determinante $\Rightarrow$ siehe Abschnitt determinante().\\
+\textit{Programmcode zur Verdeutlichung:}
+\begin{lstlisting}
+public static double crossProduct(Vektor2D a, Vektor2D b) throws Exception
+	{
+		if((a.x*b.y)>=Double.MAX_VALUE)
+		if(Math.abs((a.x*b.y))>=Double.MAX_VALUE)
+			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
+		
+		return ((a.x*b.y)-(b.x*a.y));
+	}
+\end{lstlisting} $\;$ \\
 \textbf{crossProduct() mit zwei übergebenen Vektor3D-Objekten:} Das Kreuzprodukt definiert einen Vektor, der senkrecht auf der aufgespannten Ebene beiden Ausgangsvektoren (der beiden übergebenen Vektoren) steht. 
 Mathematisch ist es folgendermaßen definiert:
 \[ \vec u \times \vec v = \begin{pmatrix}
@@ -387,7 +397,7 @@ u_1v_2 - u_2v_1
 \begin{lstlisting}
 	public static Vektor3D crossProduct(Vektor3D a, Vektor3D b) throws Exception
 	{
-		if(((a.x*b.y)>=Double.MAX_VALUE) || ((a.x*b.z)>=Double.MAX_VALUE) || ((a.z*b.y)>=Double.MAX_VALUE))
+		if((Math.abs((a.x*b.y))>=Double.MAX_VALUE) || (Math.abs((a.x*b.z))>=Double.MAX_VALUE) || (Math.abs((a.z*b.y))>=Double.MAX_VALUE))
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		
 		Vektor3D c= new Vektor3D();
@@ -396,7 +406,7 @@ u_1v_2 - u_2v_1
 		c.z=((a.x*b.y)-(a.y*b.x));
 		return c;
 	}
-\end{lstlisting}
+\end{lstlisting} 
 Auch bei dieser Funktion war es wichtig auf Überlauf zu testen, welche durch die Multiplikation der Einzelkoordinaten der 3D-Vektoren hervorgerufen werden könnte. Im Fehlerfall wird auch hier eine Exception geworfen und der Nutzer erhält eine Mitteilung. Auf die Überprüfung auf gleiche Dimension der übergebenen Vektoren können wir verzichten, da wir explizit nur Objekte der Klasse Vektor3D als Übergabeparameter zulassen.\\
 \\
 \textbf{dotProduct() mit zwei übergebenen Vektor2D-Objekten:} Diese Funktion bietet die mathematische Verknüpfung zweier Vektoren. Das Ergebnis ist ein Skalar (eine reelle Zahl).
@@ -407,7 +417,7 @@ Durch die testgetriebene Entwicklung reagiert auch diese Funktion auf einen Übe
 \begin{lstlisting}
 	public static double dotProduct(Vektor2D a, Vektor2D b) throws Exception
 	{
-		if(((a.x*b.x)+(a.y*b.y))>=Double.MAX_VALUE)
+		if(Math.abs(((a.x*b.x)+(a.y*b.y)))>=Double.MAX_VALUE)
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return ((a.x*b.x)+(a.y*b.y));
 	}
@@ -460,7 +470,7 @@ Wir haben den Fall abgefangen, dass zu große Zahlen übergeben werden könnten.
 \begin{lstlisting}
 	public static double angleRad(Vektor2D a, Vektor2D b) throws Exception
 	{
-		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE) || (b.x>=Double.MAX_VALUE) || (b.y>=Double.MAX_VALUE))
+		if((Math.abs(a.x)>=Double.MAX_VALUE) || (Math.abs(a.y)>=Double.MAX_VALUE) || (Math.abs(b.x)>=Double.MAX_VALUE) || (Math.abs(b.y)>=Double.MAX_VALUE))
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return Math.acos(cosEquation(a, b));
 	}
@@ -474,7 +484,7 @@ Der mögliche Überlauf durch die Multiplikation wird dabei von der Methode abge
 \begin{lstlisting}
 	public static double radToDegree(double a) throws Exception
 	{
-		if(((2 * Math.PI) * a)>=Double.MAX_VALUE)
+		if(Math.abs(((2 * Math.PI) * a))>=Double.MAX_VALUE)
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return ((360 / (2 * Math.PI)) * a);
 	}
@@ -484,7 +494,7 @@ Der mögliche Überlauf durch die Multiplikation wird dabei von der Methode abge
 \begin{lstlisting}
 	public static double angleDegree(Vektor2D a, Vektor2D b) throws Exception
 	{
-		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE) || (b.x>=Double.MAX_VALUE) || (b.y>=Double.MAX_VALUE))
+		if((Math.abs(a.x)>=Double.MAX_VALUE) || (Math.abs(a.y)>=Double.MAX_VALUE) || (Math.abs(b.x)>=Double.MAX_VALUE) || (Math.abs(b.y)>=Double.MAX_VALUE))
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return radToDegree(angleRad(a, b));
 	}
@@ -493,12 +503,12 @@ Der mögliche Überlauf durch die Multiplikation wird dabei von der Methode abge
 \\
 \textbf{degreeToRad():} Diese Methode wandelt Gradmaß in Bogenmaß um. Die Voraussetzung dazu ist diese Formel:
 \[ rad = \frac{2\pi}{360 ^\circ} \cdot deg \]
-Sie bildet also die Umkehrfunktion von radToDegree() und wird ebenso auf Überlauf getestet.\\
+Sie bildet also die Umkehrfunktion von radToDegree() und wird ebenso auf Überlauf getestet, jedoch nur der übergebene Wert a, da dieser die einzige Möglichkeit darstellt einen Überlauf zu verursachen. Da aufgrund der Multiplikation mit $\frac{2\pi}{360 ^\circ}$ der Wert immer kleiner wird.\\
 \textit{Programmcode zur Verdeutlichung:}
 \begin{lstlisting}
 	public static double degreeToRad(double a) throws Exception
 	{
-		if((((2 * Math.PI) / 360) * a)>=Double.MAX_VALUE)
+		if(Math.abs(a)>=Double.MAX_VALUE)
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return (((2 * Math.PI) / 360) * a);
 	}
@@ -512,7 +522,7 @@ Es ist bei 2D-Vektoren auch unter dem Namen Kreuzprodukt verbreitet, da es nicht
 \begin{lstlisting}
 	public static double determinante(Vektor2D a, Vektor2D b) throws Exception
 	{
-		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE) || (b.x>=Double.MAX_VALUE) || (b.y>=Double.MAX_VALUE))
+		if((Math.abs(a.x)>=Double.MAX_VALUE) || (Math.abs(a.y)>=Double.MAX_VALUE) || (Math.abs(b.x)>=Double.MAX_VALUE) || (Math.abs(b.y)>=Double.MAX_VALUE))
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		return (crossProduct(a,b));
 	}
@@ -523,7 +533,7 @@ Es ist bei 2D-Vektoren auch unter dem Namen Kreuzprodukt verbreitet, da es nicht
 \begin{lstlisting}
 	public static double determinante(Vektor3D a, Vektor3D b, Vektor3D c) throws Exception
 	{
-		if((a.x*b.y*c.z + b.x*c.y*a.z + c.x*a.y*b.z - c.x*b.y*a.z - a.x*c.y*b.z - b.x*a.y*c.z)>=Double.MAX_VALUE)
+		if(((-c.x*b.y*a.z - a.x*c.y*b.z - b.x*a.y*c.z) <= -Double.MAX_VALUE) || ((a.x*b.y*c.z + b.x*c.y*a.z + c.x*a.y*b.z)>=Double.MAX_VALUE))
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		
 		return (a.x*b.y*c.z + b.x*c.y*a.z + c.x*a.y*b.z - c.x*b.y*a.z - a.x*c.y*b.z - b.x*a.y*c.z);
@@ -536,7 +546,7 @@ Hier wird geprüft ob das Ergebnis der Berechnung einen Überlauf erzeugen würd
 \begin{lstlisting}
 	public static Vektor2D abs(Vektor2D a) throws Exception
 	{
-		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE))
+		if((Math.abs(a.x)>=Double.MAX_VALUE) || (Math.abs(a.y)>=Double.MAX_VALUE))
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		Vektor2D c= new Vektor2D(Math.abs(a.x),Math.abs(a.y));
 		return c;
@@ -549,7 +559,7 @@ Hier wird geprüft ob das Ergebnis der Berechnung einen Überlauf erzeugen würd
 \begin{lstlisting}
 	public static void show(Vektor2D a) throws Exception
 	{
-		if((a.x>=Double.MAX_VALUE) || (a.y>=Double.MAX_VALUE))
+		if((Math.abs(a.x)>=Double.MAX_VALUE) || (Math.abs(a.y)>=Double.MAX_VALUE))
 			throw new Exception("Ueberlauf! Bitte den maximalen Wertebereich beachten!");
 		System.out.println("Die x-Koordinate: " + a.x + "\n" + "Die y-Koordinate: " + a.y);
 	}
