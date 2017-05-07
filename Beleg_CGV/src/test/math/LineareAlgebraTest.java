@@ -583,36 +583,240 @@ public class LineareAlgebraTest {
 		
 		
 		//-----------------ANGLERAD Test Start-----------------
+		@Test
+		public void testAngleRad2D()throws Exception
+		{
+			Vektor2D a = new Vektor2D(10.0, 2.5);
+			Vektor2D b = new Vektor2D(10.0, 2.5);
+			double 	anglerad = LineareAlgebra.dotProduct(a, b);
+					anglerad /= LineareAlgebra.length(a)*LineareAlgebra.length(b);
+			double 	angleradtest = Math.acos(anglerad);
+			
+			assertEquals(LineareAlgebra.angleRad(a, b), angleradtest, 0);
+			
+		}
 		
+		@Test(expected=Exception.class)
+		public void testAngleRad2DMit‹berlauf() throws Exception
+		{
+			Vektor2D a = new Vektor2D(Double.MAX_VALUE, 2.5);
+			Vektor2D b = new Vektor2D(2, 2.5);
+			
+			LineareAlgebra.angleRad(a, b);
+		}
+		
+		@Test
+		public void testAngleRad3D() throws Exception
+		{
+			Vektor3D a = new Vektor3D(10.0, 2.5, 7.4);
+			Vektor3D b = new Vektor3D(10.0, 2.5, 7.4);
+			double 	anglerad = LineareAlgebra.dotProduct(a, b);
+					anglerad /= LineareAlgebra.length(a)*LineareAlgebra.length(b);
+			double 	angleradtest = Math.acos(anglerad);
+			
+			assertEquals(LineareAlgebra.angleRad(a, b), angleradtest, 0);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testAngleRad3DMit‹berlauf() throws Exception
+		{
+			Vektor3D a = new Vektor3D(Double.MAX_VALUE, 2.5, 1.0);
+			Vektor3D b = new Vektor3D(2, 2.5, 1.0);
+			
+			LineareAlgebra.angleRad(a, b);
+		}
 		//-----------------ANGLERAD Test End-----------------
 		
 		
 		//-----------------ANGLEDEGREE Test Start-----------------
+		@Test
+		public void testAngleDegree2D() throws Exception
+		{
+			Vektor2D a = new Vektor2D(10.0, 2.5);
+			Vektor2D b = new Vektor2D(10.0, 2.5);
+			double 	anglerad = LineareAlgebra.dotProduct(a, b);
+					anglerad /= LineareAlgebra.length(a)*LineareAlgebra.length(b);
+			double 	angleradtest = (360 / (2 * Math.PI)) *Math.acos(anglerad);
+			double testandgledegree = LineareAlgebra.angleDegree(a, b);
+			
+			assertEquals(angleradtest, testandgledegree, 0);
+		}
 		
+		@Test(expected=Exception.class)
+		public void testAngleDegree2DMit‹berlauf() throws Exception
+		{
+			Vektor3D a = new Vektor3D(Double.MAX_VALUE, 5.0, 1.0);
+			Vektor3D b = new Vektor3D(10.0, 10.0, 10.0);
+			
+			LineareAlgebra.angleDegree(a, b);
+		}
+		
+		@Test
+		public void testAngleDegree3D() throws Exception
+		{
+			Vektor3D a = new Vektor3D(10.0, 2.5, 1.0);
+			Vektor3D b = new Vektor3D(10.0, 2.5, 7.0);
+			double 	anglerad = LineareAlgebra.dotProduct(a, b);
+					anglerad /= LineareAlgebra.length(a)*LineareAlgebra.length(b);
+			double 	angleradtest = (360 / (2 * Math.PI)) *Math.acos(anglerad);
+			double testandgledegree = LineareAlgebra.angleDegree(a, b);
+			
+			assertEquals(angleradtest, testandgledegree, 0);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testAngleDegree3DMit‹berlauf() throws Exception
+		{
+			Vektor3D a = new Vektor3D(Double.MAX_VALUE, 2.5, 1.0);
+			Vektor3D b = new Vektor3D(2, 2.5, 1.0);
+			
+			LineareAlgebra.angleDegree(a, b);
+		}
 		//-----------------ANGLEDEGREE Test End-----------------
 		
 		
 		//-----------------RADTODEGREE Test Start-----------------
+		@Test
+		public void testradToDegree() throws Exception
+		{
+			double a = (360 / (2 * Math.PI)) * 7;
+			double b = LineareAlgebra.radToDegree(7);
+			
+			assertEquals(a, b, 0);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testradToDegreeMit‹berlauf() throws Exception
+		{
+			double a = LineareAlgebra.radToDegree(Double.MAX_VALUE);
+		}
 		
 		//-----------------RADTODEGREE Test End-----------------
 		
 		
 		//-----------------DEGREETORAD Test Start-----------------
+		@Test
+		public void testdegreeToRad() throws Exception
+		{
+			double a = (((2 * Math.PI) / 360) * 7);
+			double b = LineareAlgebra.degreeToRad(7);
+			
+			assertEquals(a, b, 0);
+		}
 		
+		@Test(expected=Exception.class)
+		public void testdegreeToRadMit‹berlauf() throws Exception
+		{
+			double b = LineareAlgebra.degreeToRad(Double.MAX_VALUE+1);
+		}
 		//-----------------DEGREETORAD Test End-----------------
 		
 		
 		//-----------------DETERMINANTE Test Start-----------------
+		@Test
+		public void testDeterminate2D() throws Exception
+		{
+			Vektor2D a = new Vektor2D(10.0, 2.5);
+			Vektor2D b = new Vektor2D(10.0, 2.5);
+			double c = LineareAlgebra.determinante(a, b);
+		}
 		
+		@Test(expected=Exception.class)
+		public void testDeterminate2DMit‹berlauf() throws Exception
+		{
+			Vektor2D a = new Vektor2D(10.0, 2.5);
+			Vektor2D b = new Vektor2D(10.0, Double.MAX_VALUE);
+			double c = LineareAlgebra.determinante(a, b);
+		}
+		
+		@Test
+		public void testDeterminate3D() throws Exception
+		{
+			Vektor3D a = new Vektor3D(10.0, 2.5, 2.0);
+			Vektor3D b = new Vektor3D(10.0, 3.0, 12.0);
+			Vektor3D c = new Vektor3D(10.0, 7.3, 9.0);
+			double d = LineareAlgebra.determinante(a, b, c);
+			double e = a.x*b.y*c.z + b.x*c.y*a.z + c.x*a.y*b.z - c.x*b.y*a.z - a.x*c.y*b.z - b.x*a.y*c.z;
+			
+			assertEquals(d, e, 0);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testDeterminate3DMit‹berlauf() throws Exception
+		{
+			Vektor3D a = new Vektor3D(10.0, 2.5, 2.0);
+			Vektor3D b = new Vektor3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
+			Vektor3D c = new Vektor3D(10.0, 7.3, 9.0);
+			double d = LineareAlgebra.determinante(a, b, c);
+		}
 		//-----------------DETERMINANTE Test End-----------------
 		
 		
 		//----------------ABS Test Start-----------------
+		@Test
+		public void testAbs2D() throws Exception
+		{
+			Vektor2D a = new Vektor2D(-2.0,-3.0);
+			Vektor2D b = LineareAlgebra.abs(a);
+			
+			assertEquals(b.x, 2, 0);
+			assertEquals(b.y, 3, 0);
+		}
 		
+		@Test(expected=Exception.class)
+		public void testAbs2DMit‹berlauf() throws Exception
+		{
+			Vektor2D a = new Vektor2D(-Double.MAX_VALUE,-3.0);
+			Vektor2D b = LineareAlgebra.abs(a);
+		}
+		
+		@Test
+		public void testAbs3D() throws Exception
+		{
+			Vektor3D a = new Vektor3D(-2.0,-3.0,-20);
+			Vektor3D b = LineareAlgebra.abs(a);
+			
+			assertEquals(b.x, 2, 0);
+			assertEquals(b.y, 3, 0);
+			assertEquals(b.z, 20, 0);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testAbs3DMit‹berlauf() throws Exception
+		{
+			Vektor3D a = new Vektor3D(-Double.MAX_VALUE,-3.0, 2.0);
+			Vektor3D b = LineareAlgebra.abs(a);
+		}
 		//----------------ABS Test End-----------------
 		
 		
 		//----------------SHOW Test Start-----------------
+		@Test
+		public void testShow2D() throws Exception
+		{
+			Vektor2D a = new Vektor2D(10.0,12.0);
+			LineareAlgebra.show(a);
+		}
 		
+		@Test(expected=Exception.class)
+		public void testShow2DMit‹berlauf() throws Exception
+		{
+			Vektor2D a = new Vektor2D(Double.MAX_VALUE,12.0);
+			LineareAlgebra.show(a);
+		}
+		
+		@Test
+		public void testShow3D() throws Exception
+		{
+			Vektor3D a = new Vektor3D(2.0,12.0,5.0);
+			LineareAlgebra.show(a);
+		}
+		
+		@Test(expected=Exception.class)
+		public void testShow3DMit‹berlauf() throws Exception
+		{
+			Vektor3D a = new Vektor3D(Double.MAX_VALUE,12.0,5.0);
+			LineareAlgebra.show(a);
+		}
 		//----------------SHOW Test End-----------------
 }
