@@ -1,0 +1,34 @@
+package swarm;
+
+public class VerhaltenPerfekterFlummi implements Verhalten {
+   private Flummi flummi;
+   
+   public VerhaltenPerfekterFlummi(Flummi flummi) {
+      this.flummi = flummi;
+   }
+   
+   @Override
+   public void update() throws Exception{
+      flummi.position.add(flummi.velocity);
+
+      if (flummi.position.y>480 || flummi.position.y<0)
+         flummi.velocity.y *= -1;
+   }
+   
+   public rule1(Flummi flummi)
+   {
+	   target = new Vektor2D;
+	   
+	   Vector pcJ
+
+		FOR EACH BOID b
+			IF b != bJ THEN
+				pcJ = pcJ + b.position
+			END IF
+		END
+
+		pcJ = pcJ / N-1
+
+		RETURN (pcJ - bJ.position) / 100
+   }
+}
